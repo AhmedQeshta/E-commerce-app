@@ -19,13 +19,13 @@ class CreateProductsTable extends Migration
             $table->integer('subcategory_id')->nullable();
             $table->integer('brand_id')->nullable();
             $table->string('product_name');
-
             $table->string('product_code');
             $table->string('product_quantity');
             $table->text('product_details');
             $table->string('product_color');
             $table->string('product_size');
             $table->string('selling_price');
+            $table->integer('buyone_getone')->nullable();
             $table->string('discount_price')->nullable();
             $table->string('video_link')->nullable();
             $table->integer('main_slider')->nullable();
@@ -38,7 +38,7 @@ class CreateProductsTable extends Migration
             $table->string('image_two')->nullable();
             $table->string('image_three')->nullable();
             $table->integer('status')->nullable();
-           
+
             $table->timestamps();
         });
     }

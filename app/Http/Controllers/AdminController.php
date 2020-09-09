@@ -44,7 +44,8 @@ class AdminController extends Controller
         $brand = Brand::get();
 //        $user = DB::table('users')->get();
         $user = User::get();
-        $allData =['today','month','year','delevery','return','product','brand','user'];
+        $admin = Admin::get();
+        $allData =['today','month','year','delevery','return','product','brand','user','admin'];
         return view('admin.home',compact($allData));
     }
 
