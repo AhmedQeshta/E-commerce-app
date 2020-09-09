@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use app\Notification\AdminPasswordResetNotification;
+//use app\Notification\AdminPasswordResetNotification;
 
 class AdminPasswordResetNotification extends Notification
 {
