@@ -50,7 +50,18 @@
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('public/backend/css/starlight.css') }}">
    <link href="{{ asset('public/backend/lib/summernote/summernote-bs4.css') }}" rel="stylesheet">
-
+      <style>
+          .open{
+              display: block;
+          }
+          .hover{
+              background-color: #545454;
+              border-left: 2px solid #7a7a7a;
+          }
+          .notActive{
+              background: #eaf4ff;
+          }
+      </style>
   </head>
 
   <body>
@@ -66,7 +77,7 @@
 
 
       <div class="sl-sideleft-menu">
-        <a href="{{ url('admin/home') }}" class="sl-menu-link active">
+        <a href="{{ url('admin/home') }}" class="sl-menu-link {{ Request::is('admin/home') ? 'active' : 'notActive' }}">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Dashboard</span>
@@ -75,33 +86,32 @@
 
 
  @if(Auth::user()->category == 1)
-    <a href="#" class="sl-menu-link">
+    <a href="#" class="sl-menu-link {{ Request::is('admin/categories','admin/sub/category','admin/brands','edit/brand/*','edit/subcategory/*','edit/category/*') ? 'active' : '' }} ">
       <div class="sl-menu-item">
         <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
         <span class="menu-item-label">Category</span>
         <i class="menu-item-arrow fa fa-angle-down"></i>
       </div><!-- menu-item -->
     </a><!-- sl-menu-link -->
-    <ul class="sl-menu-sub nav flex-column">
-      <li class="nav-item"><a href="{{ route('categories') }}" class="nav-link">Category</a></li>
-      <li class="nav-item"><a href="{{ route('sub.categories') }}" class="nav-link">Sub Category</a></li>
-      <li class="nav-item"><a href="{{ route('brands') }}" class="nav-link">Brand</a></li>
-
+    <ul class="sl-menu-sub nav flex-column  {{ Request::is('admin/categories','admin/sub/category','admin/brands','edit/brand/*','edit/subcategory/*','edit/category/*') ? 'open' : '' }}" >
+      <li class="nav-item "><a href="{{ route('categories') }}" class="nav-link {{ Request::is('admin/categories') ? 'hover' : '' }} ">Category</a></li>
+      <li class="nav-item"><a href="{{ route('sub.categories') }}" class="nav-link {{ Request::is('admin/sub/category') ? 'hover' : '' }} ">Sub Category</a></li>
+      <li class="nav-item"><a href="{{ route('brands') }}" class="nav-link {{ Request::is('admin/brands') ? 'hover' : '' }}">Brand</a></li>
     </ul>
  @else
  @endif
 
 @if(Auth::user()->coupon == 1)
 
-        <a href="#" class="sl-menu-link">
+        <a href="#" class="sl-menu-link {{ Request::is('admin/sub/coupon','edit/coupon/*') ? 'active' : '' }} ">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
             <span class="menu-item-label">Coupons</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('admin.coupon') }}" class="nav-link">Coupon</a></li>
+        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/sub/coupon','edit/coupon/*') ? 'open' : '' }}">
+          <li class="nav-item"><a href="{{ route('admin.coupon') }}" class="nav-link {{ Request::is('admin/sub/coupon') ? 'hover' : '' }}">Coupon</a></li>
 
         </ul>
       @else
@@ -109,87 +119,86 @@
 
 @if(Auth::user()->product == 1)
 
-<a href="#" class="sl-menu-link">
+<a href="#" class="sl-menu-link {{ Request::is('admin/product/add','admin/product/all','view/product/*','edit/product/*') ? 'active' : '' }}">
   <div class="sl-menu-item">
     <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>
     <span class="menu-item-label">Products</span>
     <i class="menu-item-arrow fa fa-angle-down"></i>
   </div><!-- menu-item -->
 </a><!-- sl-menu-link -->
-<ul class="sl-menu-sub nav flex-column">
-  <li class="nav-item"><a href="{{ route('add.product') }}" class="nav-link">Add Product</a></li>
-  <li class="nav-item"><a href="{{ route('all.product') }}" class="nav-link">All Product</a></li>
+<ul class="sl-menu-sub nav flex-column {{ Request::is('admin/product/add','admin/product/all','view/product/*','edit/product/*') ? 'open' : '' }}">
+  <li class="nav-item {{ Request::is('admin/product/add') ? 'hover' : '' }}"><a href="{{ route('add.product') }}" class="nav-link">Add Product</a></li>
+  <li class="nav-item {{ Request::is('admin/product/all') ? 'hover' : '' }}"><a href="{{ route('all.product') }}" class="nav-link">All Product</a></li>
 </ul>
 @else
 @endif
 
 
 @if(Auth::user()->order == 1)
-   <a href="#" class="sl-menu-link">
+   <a href="#" class="sl-menu-link {{ Request::is('admin/pading/order','admin/cancel/order','admin/*/payment') ? 'active' : '' }}">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>
             <span class="menu-item-label">Orders</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('admin.neworder') }}" class="nav-link">New Order</a></li>
-          <li class="nav-item"><a href="{{ route('admin.accept.payment') }}" class="nav-link">Accept Payment </a></li>
-           <li class="nav-item"><a href="{{ route('admin.cancel.order') }}" class="nav-link">Cancel Order </a></li>
-          <li class="nav-item"><a href="{{ route('admin.process.payment') }}" class="nav-link">Process Delivery </a></li>
-          <li class="nav-item"><a href="{{ route('admin.success.payment') }}" class="nav-link">Delivery Success </a></li>
+        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/pading/order','admin/cancel/order','admin/*/payment') ? 'open' : '' }}">
+          <li class="nav-item {{ Request::is('admin/pading/order') ? 'hover' : '' }}"><a href="{{ route('admin.neworder') }}" class="nav-link">New Order</a></li>
+          <li class="nav-item {{ Request::is('admin/accept/payment') ? 'hover' : '' }}"><a href="{{ route('admin.accept.payment') }}" class="nav-link">Accept Payment </a></li>
+           <li class="nav-item {{ Request::is('admin/cancel/order') ? 'hover' : '' }}"><a href="{{ route('admin.cancel.order') }}" class="nav-link">Cancel Order </a></li>
+          <li class="nav-item {{ Request::is('admin/process/payment') ? 'hover' : '' }}"><a href="{{ route('admin.process.payment') }}" class="nav-link">Process Delivery </a></li>
+          <li class="nav-item {{ Request::is('admin/success/payment') ? 'hover' : '' }}"><a href="{{ route('admin.success.payment') }}" class="nav-link">Delivery Success </a></li>
         </ul>
 
      @else
      @endif
 
 @if(Auth::user()->blog == 1)
-         <a href="#" class="sl-menu-link">
+         <a href="#" class="sl-menu-link {{ Request::is('blog/category/list','admin/*/post','edit/blogcategory/*','edit/post/*') ? 'active' : '' }}">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>
             <span class="menu-item-label">Blog</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-    <li class="nav-item"><a href="{{ route('add.blog.categorylist') }}" class="nav-link">Blog Category</a></li>
-
-          <li class="nav-item"><a href="{{ route('add.blogpost') }}" class="nav-link">Add Post</a></li>
-          <li class="nav-item"><a href="{{ route('all.blogpost') }}" class="nav-link">Post List</a></li>
+        <ul class="sl-menu-sub nav flex-column {{ Request::is('blog/category/list','admin/*/post','edit/blogcategory/*','edit/post/*') ? 'open' : '' }}">
+          <li class="nav-item {{ Request::is('blog/category/list') ? 'hover' : '' }}"><a href="{{ route('add.blog.categorylist') }}" class="nav-link">Blog Category</a></li>
+          <li class="nav-item {{ Request::is('admin/add/post') ? 'hover' : '' }}"><a href="{{ route('add.blogpost') }}" class="nav-link">Add Post</a></li>
+          <li class="nav-item {{ Request::is('admin/all/post') ? 'hover' : '' }}"><a href="{{ route('all.blogpost') }}" class="nav-link">Post List</a></li>
         </ul>
      @else
      @endif
 
 @if(Auth::user()->other == 1)
 
-<a href="#" class="sl-menu-link">
+<a href="#" class="sl-menu-link {{ Request::is('admin/newslater','admin/seo') ? 'active' : '' }}">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
             <span class="menu-item-label">Others</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('admin.newslater') }}" class="nav-link">Newslaters</a></li>
-           <li class="nav-item"><a href="{{ route('admin.seo') }}" class="nav-link">SEO Setting </a></li>
+        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/newslater','admin/seo') ? 'open' : '' }}">
+          <li class="nav-item {{ Request::is('admin/newslater') ? 'hover' : '' }}"><a href="{{ route('admin.newslater') }}" class="nav-link">Newslaters</a></li>
+           <li class="nav-item {{ Request::is('admin/seo') ? 'hover' : '' }}"><a href="{{ route('admin.seo') }}" class="nav-link">SEO Setting </a></li>
 
         </ul>
      @else
      @endif
 
 @if(Auth::user()->report == 1)
-        <a href="#" class="sl-menu-link">
+        <a href="#" class="sl-menu-link {{ Request::is('admin/today/*','admin/this/month','admin/search/report') ? 'active' : '' }}">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
             <span class="menu-item-label">Reports</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('today.order') }}" class="nav-link">Today Order</a></li>
-           <li class="nav-item"><a href="{{ route('today.delivery') }}" class="nav-link">Today Delivery </a></li>
-           <li class="nav-item"><a href="{{ route('this.month') }}" class="nav-link">This Month </a></li>
-             <li class="nav-item"><a href="{{ route('search.report') }}" class="nav-link">Search Report </a></li>
+        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/today/*','admin/this/month','admin/search/report') ? 'open' : '' }}">
+          <li class="nav-item {{ Request::is('admin/today/order') ? 'hover' : '' }}"><a href="{{ route('today.order') }}" class="nav-link">Today Order</a></li>
+           <li class="nav-item {{ Request::is('admin/today/delivery') ? 'hover' : '' }}"><a href="{{ route('today.delivery') }}" class="nav-link">Today Delivery </a></li>
+           <li class="nav-item {{ Request::is('admin/this/month') ? 'hover' : '' }}"><a href="{{ route('this.month') }}" class="nav-link">This Month </a></li>
+             <li class="nav-item {{ Request::is('admin/search/report') ? 'hover' : '' }}"><a href="{{ route('search.report') }}" class="nav-link">Search Report </a></li>
 
         </ul>
 
@@ -198,32 +207,32 @@
      @endif
 
 @if(Auth::user()->role == 1)
-<a href="#" class="sl-menu-link">
+<a href="#" class="sl-menu-link {{ Request::is('admin/create/admin','admin/all/user','edit/admin/*') ? 'active' : '' }}">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
             <span class="menu-item-label">User Role</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('create.admin') }}" class="nav-link">Create User</a></li>
-           <li class="nav-item"><a href="{{ route('admin.all.user') }}" class="nav-link">All User </a></li>
+        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/create/admin','admin/all/user','edit/admin/*') ? 'open' : '' }}">
+          <li class="nav-item {{ Request::is('admin/create/admin') ? 'hover' : '' }}"><a href="{{ route('create.admin') }}" class="nav-link">Create User</a></li>
+           <li class="nav-item {{ Request::is('admin/all/user') ? 'hover' : '' }}"><a href="{{ route('admin.all.user') }}" class="nav-link">All User </a></li>
 
         </ul>
      @else
      @endif
 
 @if(Auth::user()->return == 1)
-        <a href="#" class="sl-menu-link">
+        <a href="#" class="sl-menu-link {{ Request::is('admin/return/request','admin/all/return') ? 'active' : '' }}">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
             <span class="menu-item-label">Return Order</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('admin.return.request') }}" class="nav-link">Return Request</a></li>
-           <li class="nav-item"><a href="{{ route('admin.all.return') }}" class="nav-link">All Request </a></li>
+        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/return/request','admin/all/return') ? 'open' : '' }}">
+          <li class="nav-item {{ Request::is('admin/return/request') ? 'hover' : '' }}"><a href="{{ route('admin.return.request') }}" class="nav-link">Return Request</a></li>
+           <li class="nav-item {{ Request::is('admin/all/return') ? 'hover' : '' }}"><a href="{{ route('admin.all.return') }}" class="nav-link">All Request </a></li>
 
         </ul>
 
@@ -231,15 +240,15 @@
      @endif
 
 @if(Auth::user()->stock == 1)
-         <a href="#" class="sl-menu-link">
+         <a href="#" class="sl-menu-link {{ Request::is('admin/product/stock') ? 'active' : '' }}">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
             <span class="menu-item-label">Product Stocks</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('admin.product.stock') }}" class="nav-link">Stock</a></li>
+        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/product/stock') ? 'open' : '' }}">
+          <li class="nav-item {{ Request::is('admin/product/stock') ? 'hover' : '' }}"><a href="{{ route('admin.product.stock') }}" class="nav-link">Stock</a></li>
 
 
         </ul>
@@ -248,16 +257,16 @@
      @endif
 
 @if(Auth::user()->contact == 1)
-         <a href="#" class="sl-menu-link">
+         <a href="#" class="sl-menu-link {{ Request::is('admin/all/message') ? 'active' : '' }}">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
             <span class="menu-item-label">Contact Message</span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
+        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/all/message') ? 'open' : '' }}">
 
-           <li class="nav-item"><a href="{{ route('all.message') }}" class="nav-link">All Message </a></li>
+           <li class="nav-item {{ Request::is('admin/all/message') ? 'hover' : '' }}"><a href="{{ route('all.message') }}" class="nav-link">All Message </a></li>
 
         </ul>
 
@@ -273,23 +282,23 @@
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href=" " class="nav-link">New Comments</a></li>
-           <li class="nav-item"><a href=" " class="nav-link">All Comments </a></li>
+          <li class="nav-item"><a href="#" class="nav-link">New Comments</a></li>
+           <li class="nav-item"><a href="#" class="nav-link">All Comments </a></li>
 
         </ul>
      @else
      @endif
 
 @if(Auth::user()->setting == 1)
-          <a href="#" class="sl-menu-link">
+          <a href="#" class="sl-menu-link {{ Request::is('admin/site/setting') ? 'active' : '' }}">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
             <span class="menu-item-label">Site Setting  </span>
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="{{ route('admin.site.setting') }}" class="nav-link">Site Setting</a></li>
+        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/site/setting') ? 'open' : '' }}">
+          <li class="nav-item {{ Request::is('admin/site/setting') ? 'hover' : '' }}"><a href="{{ route('admin.site.setting') }}" class="nav-link">Site Setting</a></li>
 
 
         </ul>

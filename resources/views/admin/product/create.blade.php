@@ -1,6 +1,6 @@
 @extends('admin.admin_layouts')
 
- 
+
 
 @section('admin_content')
   <!-- ########## START: MAIN PANEL ########## -->
@@ -12,14 +12,14 @@
 
       <div class="sl-pagebody">
 
- 
+
  <div class="card pd-20 pd-sm-40">
           <h6 class="card-body-title">New Product ADD
  <a href="{{ route('all.product')}}" class="btn btn-success btn-sm pull-right"> All Product</a>
           </h6>
           <p class="mg-b-20 mg-sm-b-30">New Prodcut Add From</p>
 
-       <form method="post" action="{{ route('store.product')}}" enctype="multipart/form-data">    
+       <form method="post" action="{{ route('store.product')}}" enctype="multipart/form-data">
         @csrf
 
           <div class="form-layout">
@@ -51,7 +51,7 @@
                 </div>
               </div><!-- col-4 -->
 
-               
+
               <div class="col-lg-4">
                 <div class="form-group mg-b-10-force">
                   <label class="form-control-label">Category: <span class="tx-danger">*</span></label>
@@ -69,7 +69,7 @@
                 <div class="form-group mg-b-10-force">
                   <label class="form-control-label">Sub Category: <span class="tx-danger">*</span></label>
        <select class="form-control select2" data-placeholder="Choose country" name="subcategory_id">
-                     
+
                   </select>
                 </div>
               </div><!-- col-4 -->
@@ -115,11 +115,11 @@
                <div class="col-lg-12">
                 <div class="form-group">
                   <label class="form-control-label">Product Details: <span class="tx-danger">*</span></label>
-  
-            <textarea class="form-control" id="summernote"  name="product_details"> 
+
+            <textarea class="form-control" id="summernote"  name="product_details">
 
              </textarea>
-                   
+
                 </div>
               </div><!-- col-4 -->
 
@@ -132,52 +132,44 @@
 
 
 
- <div class="col-lg-4">
-                <div class="form-group">
-                  <label class="form-control-label">Image One ( Main Thumbnali): <span class="tx-danger">*</span></label>
-                 <label class="custom-file">
-          <input type="file" id="file" class="custom-file-input" name="image_one" onchange="readURL(this);" required="">
-          <span class="custom-file-control"></span>
-          <img src="#" id="one">
-            </label>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label class="form-control-label">Image One ( Main Thumbnali): <span class="tx-danger">*</span></label>
+                         <label class="custom-file" style="position: relative; display: flex;flex-direction: column; margin-bottom: 100px">
+                              <input type="file" id="file" class="custom-file-input" name="image_one" onchange="readURL(this);" required="">
+                              <span class="custom-file-control"></span>
+                              <img style="position: absolute;top:60px;left:45%" src="#" id="one">
+                        </label>
+                    </div>
+              </div><!-- col-4 -->
 
+                <div class="col-lg-4">
+                <div class="form-group">
+                    <label class="form-control-label">Image Two: <span class="tx-danger">*</span></label>
+                     <label class="custom-file" style="position: relative; display: flex;flex-direction: column; margin-bottom: 100px">
+                          <span class="custom-file-control"></span>
+                          <input type="file" id="file" class="custom-file-input" name="image_two" onchange="readURL2(this);" required="">
+                          <img style="position: absolute;top:60px;left:45%" src="#" id="two">
+                    </label>
                 </div>
               </div><!-- col-4 -->
 
+                <div class="col-lg-4">
+                        <div class="form-group">
+                            <label class="form-control-label">Image Three: <span class="tx-danger">*</span></label>
+                            <label class="custom-file" style="position: relative; display: flex;flex-direction: column; margin-bottom: 100px">
+                                  <input type="file" id="file" class="custom-file-input" name="image_three" onchange="readURL3(this);" required="">
+                                  <span class="custom-file-control"></span>
+                                  <img style="position: absolute;top:60px;left:45%" src="#" id="three">
+                            </label>
+                        </div>
+                 </div><!-- col-4 -->
 
-               <div class="col-lg-4">
-                <div class="form-group">
-                  <label class="form-control-label">Image Two: <span class="tx-danger">*</span></label>
-                 <label class="custom-file">
-          <input type="file" id="file" class="custom-file-input" name="image_two" onchange="readURL2(this);" required="">
-          <span class="custom-file-control"></span>
-          <img src="#" id="two">
-            </label>
-
-                </div>
-              </div><!-- col-4 -->
-
-
-
-
- <div class="col-lg-4">
-                <div class="form-group">
-                  <label class="form-control-label">Image Three: <span class="tx-danger">*</span></label>
-                 <label class="custom-file">
-          <input type="file" id="file" class="custom-file-input" name="image_three" onchange="readURL3(this);" required="">
-          <span class="custom-file-control"></span>
-          <img src="#" id="three">
-            </label>
-
-                </div>
-              </div><!-- col-4 --> 
-
-            </div><!-- row -->
+</div><!-- row -->
 
   <hr>
   <br><br>
-
-          <div class="row">
+<div class="row">
 
         <div class="col-lg-4">
         <label class="ckbox">
@@ -185,7 +177,7 @@
           <span>Main Slider</span>
         </label>
 
-        </div> <!-- col-4 --> 
+        </div> <!-- col-4 -->
 
          <div class="col-lg-4">
         <label class="ckbox">
@@ -193,7 +185,7 @@
           <span>Hot Deal</span>
         </label>
 
-        </div> <!-- col-4 --> 
+        </div> <!-- col-4 -->
 
 
 
@@ -203,7 +195,7 @@
           <span>Best Rated</span>
         </label>
 
-        </div> <!-- col-4 --> 
+        </div> <!-- col-4 -->
 
 
          <div class="col-lg-4">
@@ -212,7 +204,7 @@
           <span>Trend Product </span>
         </label>
 
-        </div> <!-- col-4 --> 
+        </div> <!-- col-4 -->
 
  <div class="col-lg-4">
         <label class="ckbox">
@@ -220,7 +212,7 @@
           <span>Mid Slider</span>
         </label>
 
-        </div> <!-- col-4 --> 
+        </div> <!-- col-4 -->
 
 <div class="col-lg-4">
         <label class="ckbox">
@@ -228,7 +220,7 @@
           <span>Hot New </span>
         </label>
 
-        </div> <!-- col-4 --> 
+        </div> <!-- col-4 -->
 
 
         <div class="col-lg-4">
@@ -237,10 +229,10 @@
           <span>Buyone Getone</span>
         </label>
 
-        </div> <!-- col-4 --> 
- 
+        </div> <!-- col-4 -->
 
-          </div><!-- end row --> 
+
+          </div><!-- end row -->
 <br><br>
 
 
@@ -251,17 +243,17 @@
           </div><!-- form-layout -->
         </div><!-- card -->
 
-        </form> 
+        </form>
 
 
 
-        
+
         </div><!-- row -->
 
-  
+
     </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
- 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 
@@ -270,15 +262,15 @@
      $('select[name="category_id"]').on('change',function(){
           var category_id = $(this).val();
           if (category_id) {
-            
+
             $.ajax({
               url: "{{ url('/get/subcategory/') }}/"+category_id,
               type:"GET",
               dataType:"json",
-              success:function(data) { 
+              success:function(data) {
               var d =$('select[name="subcategory_id"]').empty();
               $.each(data, function(key, value){
-              
+
               $('select[name="subcategory_id"]').append('<option value="'+ value.id + '">' + value.subcategory_name + '</option>');
 
               });
