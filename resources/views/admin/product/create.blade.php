@@ -98,16 +98,22 @@
               </div><!-- col-4 -->
 
 <div class="col-lg-4">
-                <div class="form-group">
-                  <label class="form-control-label">Product Color: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="product_color" id="color" data-role="tagsinput"  >
-                </div>
-              </div><!-- col-4 -->
+    <div class="form-group">
+        {{--
+        <!-- Tags Input CDN CSS -->
+            <link href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet"/>
+
+              data-role="tagsinput" (user to input multi input)
+              --}}
+      <label class="form-control-label">Product Color: <span class="tx-danger">*</span></label>
+      <input class="form-control" type="text" name="product_color" id="color" data-role="tagsinput" >
+    </div>
+</div><!-- col-4 -->
 
               <div class="col-lg-4">
                 <div class="form-group">
                   <label class="form-control-label">Selling Price: <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="selling_price" placeholder="Selling Price" >
+                  <input class="form-control" type="text" name="selling_price"  placeholder="Selling Price" >
                 </div>
               </div><!-- col-4 -->
 

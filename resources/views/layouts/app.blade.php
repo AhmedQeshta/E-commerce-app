@@ -35,9 +35,9 @@ $setting = DB::table('sitesetting')->first();
 
 
 <div class="super_container">
-    
+
     <!-- Header -->
-    
+
     <header class="header">
 
         <!-- Top Bar -->
@@ -49,23 +49,23 @@ $setting = DB::table('sitesetting')->first();
                         <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('public/frontend/images/phone.png')}}" alt=""></div>{{ $setting->phone_one }}</div>
                         <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('public/frontend/images/mail.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">{{ $setting->email }}</a></div>
                         <div class="top_bar_content ml-auto">
-                           
+
 
                      @guest
 
                      @else
              <div class="top_bar_menu">
               <ul class="standard_dropdown top_bar_dropdown">
-                
-                  <li> 
-            <a href="" data-toggle="modal" data-target="#exampleModal">My Order Traking</a>                   
+
+                  <li>
+            <a href="" data-toggle="modal" data-target="#exampleModal">My Order Traking</a>
                   </li>
-                                     
+
                                 </ul>
                             </div>
                      @endguest
 
-                            
+
 
 
 
@@ -73,23 +73,23 @@ $setting = DB::table('sitesetting')->first();
 
                             <div class="top_bar_menu">
                                 <ul class="standard_dropdown top_bar_dropdown">
-                                   
+
                 @php
                   $language = Session()->get('lang');
                 @endphp
 
 
                                     <li>
-                                @if(Session()->get('lang') == 'hindi' )
+                                @if(Session()->get('lang') == 'arabic' )
                                  <a href="{{ route('language.english') }}">English<i class="fas fa-chevron-down"></i></a>
                                 @else
-                                 <a href="{{ route('language.hindi') }}">Hindi<i class="fas fa-chevron-down"></i></a>
-                                @endif        
-                       
-                        
-                                         
+                                 <a href="{{ route('language.arabic') }}">Arabic<i class="fas fa-chevron-down"></i></a>
+                                @endif
+
+
+
                                     </li>
-                                     
+
                                 </ul>
                             </div>
                             <div class="top_bar_user">
@@ -107,16 +107,16 @@ $setting = DB::table('sitesetting')->first();
                                             <li><a href="#">Others</a></li>
                                         </ul>
                                     </li>
-                                    
-                                </ul> 
+
+                                </ul>
                          @endguest
- 
-                                
+
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>      
+            </div>
         </div>
 
         <!-- Header Main -->
@@ -169,7 +169,7 @@ $setting = DB::table('sitesetting')->first();
                      @guest
 
                      @else
-               
+
 
                @php
          $wishlist = DB::table('wishlists')->where('user_id',Auth::id())->get();
@@ -204,10 +204,10 @@ $setting = DB::table('sitesetting')->first();
                 </div>
             </div>
         </div>
-        
+
         <!-- Main Navigation -->
 
-     
+
     <!-- Characteristics -->
 
 @yield('content')
@@ -236,7 +236,7 @@ $setting = DB::table('sitesetting')->first();
                                 <li><a href="{{ $setting->twitter }}"><i class="fab fa-twitter"></i></a></li>
                                 <li><a href="{{ $setting->youtube }}"><i class="fab fa-youtube"></i></a></li>
                                 <li><a href="{{ $setting->instagram }}"><i class="fab fa-google"></i></a></li>
-                                 
+
                             </ul>
                         </div>
                     </div>
@@ -296,7 +296,7 @@ $setting = DB::table('sitesetting')->first();
         <div class="container">
             <div class="row">
                 <div class="col">
-                    
+
                     <div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
                         <div class="copyright_content"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
@@ -333,16 +333,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     @csrf
     <div class="modal-body">
         <label> Status Code</label>
-        <input type="text" name="code" required="" class="form-control" placeholder="Your Order Status Code">        
+        <input type="text" name="code" required="" class="form-control" placeholder="Your Order Status Code">
     </div>
-     
-     <button class="btn btn-danger" type="submit">Track Now </button>  
+
+     <button class="btn btn-danger" type="submit">Track Now </button>
 
    </form>
-  
-        
+
+
       </div>
-       
+
     </div>
   </div>
 </div>
@@ -377,7 +377,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
- 
+
 
  <script>
         @if(Session::has('messege'))
@@ -397,10 +397,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                   break;
           }
         @endif
-     </script>  
+     </script>
 
 
- <script>  
+ <script>
          $(document).on("click", "#return", function(e){
              e.preventDefault();
              var link = $(this).attr("href");

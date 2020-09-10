@@ -55,8 +55,7 @@
               display: block;
           }
           .hover{
-              background-color: #545454;
-              border-left: 2px solid #7a7a7a;
+              border-left: 2px solid #b7b7b7;
           }
           .notActive{
               background: #eaf4ff;
@@ -93,7 +92,7 @@
         <i class="menu-item-arrow fa fa-angle-down"></i>
       </div><!-- menu-item -->
     </a><!-- sl-menu-link -->
-    <ul class="sl-menu-sub nav flex-column  {{ Request::is('admin/categories','admin/sub/category','admin/brands','edit/brand/*','edit/subcategory/*','edit/category/*') ? 'open' : '' }}" >
+    <ul class="sl-menu-sub nav flex-column  {{ Request::is('admin/categories','admin/sub/category','admin/brands','edit/brand/*','edit/subcategory/*','edit/category/*') ? ' active open' : '' }}" >
       <li class="nav-item "><a href="{{ route('categories') }}" class="nav-link {{ Request::is('admin/categories') ? 'hover' : '' }} ">Category</a></li>
       <li class="nav-item"><a href="{{ route('sub.categories') }}" class="nav-link {{ Request::is('admin/sub/category') ? 'hover' : '' }} ">Sub Category</a></li>
       <li class="nav-item"><a href="{{ route('brands') }}" class="nav-link {{ Request::is('admin/brands') ? 'hover' : '' }}">Brand</a></li>

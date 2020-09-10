@@ -1,6 +1,6 @@
 @extends('admin.admin_layouts')
 
- 
+
 
 @section('admin_content')
   <!-- ########## START: MAIN PANEL ########## -->
@@ -19,7 +19,7 @@
           </h6>
           <p class="mg-b-20 mg-sm-b-30">New Post Add From</p>
 
-       <form method="post" action="{{ route('store.post')}}" enctype="multipart/form-data">    
+       <form method="post" action="{{ route('store.post')}}" enctype="multipart/form-data">
         @csrf
 
           <div class="form-layout">
@@ -32,51 +32,49 @@
               </div><!-- col-4 -->
               <div class="col-lg-6">
                 <div class="form-group">
-                  <label class="form-control-label">Post Title (HINDI): <span class="tx-danger">*</span></label>
-                  <input class="form-control" type="text" name="post_title_in"  placeholder="Enter Post Title in Hindi">
+                  <label class="form-control-label">Post Title (Arabic): <span class="tx-danger">*</span></label>
+                  <input class="form-control" type="text" name="post_title_ar"  placeholder="Enter Post Title in Arabic">
                 </div>
               </div><!-- col-4 -->
-              
-               
+
+
               <div class="col-lg-4">
                 <div class="form-group mg-b-10-force">
                   <label class="form-control-label"> Blog Category: <span class="tx-danger">*</span></label>
-       <select class="form-control select2" data-placeholder="Choose country" name="category_id">
-                    <option label="Choose Category"></option>
-                    @foreach($blogcategory as $row)
-                    <option value="{{ $row->id }}">{{ $row->category_name_en }}</option>
-                    @endforeach
+                    <select class="form-control select2" data-placeholder="Choose country" name="category_id">
+                        <option label="Choose Category"></option>
+                        @foreach($blogcategory as $row)
+                        <option value="{{ $row->id }}">{{ $row->category_name_en }}</option>
+                        @endforeach
                   </select>
                 </div>
               </div><!-- col-4 -->
 
- 
- 
+
 
                <div class="col-lg-12">
                 <div class="form-group">
                   <label class="form-control-label">Product Details (ENGLISH): <span class="tx-danger">*</span></label>
-  
-            <textarea class="form-control" id="summernote"  name="details_en"> 
 
-             </textarea>
-                   
+                    <textarea class="form-control" id="summernote"  name="details_en">
+                     </textarea>
+
                 </div>
               </div><!-- col-4 -->
 
                <div class="col-lg-12">
                 <div class="form-group">
-                  <label class="form-control-label">Product Details (HINDI): <span class="tx-danger">*</span></label>
-  
-            <textarea class="form-control" id="summernote1"  name="details_in"> 
+                  <label class="form-control-label">Product Details (Arabic): <span class="tx-danger">*</span></label>
+
+            <textarea class="form-control" id="summernote1"  name="details_ar">
 
              </textarea>
-                   
+
                 </div>
               </div><!-- col-4 -->
 
 
-               
+
 
 
 
@@ -92,35 +90,33 @@
                 </div>
               </div><!-- col-4 -->
 
- 
+
 
             </div><!-- row -->
 
-  
 
-          </div><!-- end row --> 
 <br><br>
 
 
             <div class="form-layout-footer">
               <button class="btn btn-info mg-r-5" type="submit">Submit Form</button>
-               
+
             </div><!-- form-layout-footer -->
           </div><!-- form-layout -->
-        </div><!-- card -->
-
-        </form> 
 
 
+        </form>
 
-        
+
+
+
         </div><!-- row -->
 
-  
+
     </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
- 
- 
+
+
 
 
  <script type="text/javascript">
@@ -138,8 +134,8 @@
   }
 </script>
 
- 
 
- 
+
+
 
 @endsection

@@ -8,8 +8,8 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2">
 					<div class="single_post_title">
-                    @if(Session()->get('lang') == 'hindi')
-								{{ $row->post_title_in }}
+                    @if(Session()->get('lang') == 'arabic')
+								{{ $row->post_title_ar }}
 								@else
 								{{ $row->post_title_en }}
 								@endif
@@ -17,8 +17,8 @@
 
 
 					<div class="single_post_text">
-						<p> @if(Session()->get('lang') == 'hindi')
-								{!! $row->details_in !!}
+						<p> @if(Session()->get('lang') == 'arabic')
+								{!! $row->details_ar !!}
 								@else
 								{!! $row->details_en !!}
 								@endif </p>

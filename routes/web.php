@@ -10,7 +10,7 @@ Route::get('/', function () {return view('pages.index');});
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/password/change', 'HomeController@changePassword')->name('password.change');
-Route::post('/password/update', 'HomeController@updatePassword')->name('password.update'); 
+Route::post('/password/update', 'HomeController@updatePassword')->name('password.update');
 Route::get('/user/logout', 'HomeController@Logout')->name('user.logout');
 
 //admin=======
@@ -23,19 +23,19 @@ Route::post('admin-password/email', 'Admin\ForgotPasswordController@sendResetLin
 Route::get('admin/reset/password/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
 Route::post('admin/update/reset', 'Admin\ResetPasswordController@reset')->name('admin.reset.update');
 Route::get('/admin/Change/Password','AdminController@ChangePassword')->name('admin.password.change');
-Route::post('/admin/password/update','AdminController@Update_pass')->name('admin.password.update'); 
-Route::get('admin/logout', 'AdminController@logout')->name('admin.logout'); 
+Route::post('/admin/password/update','AdminController@Update_pass')->name('admin.password.update');
+Route::get('admin/logout', 'AdminController@logout')->name('admin.logout');
 
 
-    /// Admin Section 
-// categories 
+    /// Admin Section
+// categories
 Route::get('admin/categories', 'Admin\Category\CategoryController@category')->name('categories');
 Route::post('admin/store/category', 'Admin\Category\CategoryController@storecategory')->name('store.category');
 Route::get('delete/category/{id}', 'Admin\Category\CategoryController@Deletecategory');
 Route::get('edit/category/{id}', 'Admin\Category\CategoryController@Editcategory');
 Route::post('update/category/{id}', 'Admin\Category\CategoryController@Updatecategory');
 
-/// Brand 
+/// Brand
 Route::get('admin/brands', 'Admin\Category\BrandController@brand')->name('brands');
 Route::post('admin/store/brand', 'Admin\Category\BrandController@storebrand')->name('store.brand');
 Route::get('delete/brand/{id}', 'Admin\Category\BrandController@DeleteBrand');
@@ -50,7 +50,7 @@ Route::get('edit/subcategory/{id}', 'Admin\Category\SubCategoryController@EditSu
 
 Route::post('update/subcategory/{id}', 'Admin\Category\SubCategoryController@UpdateSubcat');
 
-// Coupons All 
+// Coupons All
 Route::get('admin/sub/coupon', 'Admin\Category\CouponController@Coupon')->name('admin.coupon');
 Route::post('admin/store/coupon', 'Admin\Category\CouponController@StoreCoupon')->name('store.coupon');
 Route::get('delete/coupon/{id}', 'Admin\Category\CouponController@DeleteCoupon');
@@ -113,7 +113,7 @@ Route::post('store/newslater', 'FrontController@StoreNewslater')->name('store.ne
 
 Route::get('add/wishlist/{id}', 'WishlistController@addWishlist');
 
-// Add to Cart Route 
+// Add to Cart Route
 Route::get('add/to/cart/{id}', 'CartController@AddCart');
 Route::get('check', 'CartController@check');
 
@@ -137,23 +137,23 @@ Route::get('/product/details/{id}/{product_name}', 'ProductController@ProductVie
 
 Route::post('/cart/product/add/{id}', 'ProductController@AddCart');
 
-/// Blog Post Route 
+/// Blog Post Route
 
 Route::get('blog/post/', 'BlogController@blog')->name('blog.post');
 
 Route::get('language/english', 'BlogController@English')->name('language.english');
-Route::get('language/hindi', 'BlogController@Hindi')->name('language.hindi');
+Route::get('language/arabic', 'BlogController@Arabic')->name('language.arabic');
 
 Route::get('blog/single/{id}', 'BlogController@BlogSingle');
 
-// Pyment Step 
+// Pyment Step
 Route::get('payment/page', 'CartController@PaymentPage')->name('payment.step');
-Route::post('user/payment/process/', 'PaymentController@Payment')->name('payment.process'); 
+Route::post('user/payment/process/', 'PaymentController@Payment')->name('payment.process');
 
 Route::post('user/stripe/charge/', 'PaymentController@StripeCharge')->name('stripe.charge');
 Route::post('user/oncash/charge/', 'PaymentController@OnCash')->name('oncash.charge');
 
-// Product details Page 
+// Product details Page
 Route::get('products/{id}', 'ProductController@ProductsView');
 Route::get('allcategory/{id}', 'ProductController@CategoryView');
 
@@ -182,7 +182,7 @@ Route::post('admin/seo/update', 'Admin\OrderController@UpdateSeo')->name('update
 // Order Tracking Route
 Route::post('order/traking', 'FrontController@OrderTraking')->name('order.tracking');
 
-// Order Report Routes 
+// Order Report Routes
 
 Route::get('admin/today/order', 'Admin\ReportController@TodayOrder')->name('today.order');
 Route::get('admin/today/delivery', 'Admin\ReportController@TodayDelivery')->name('today.delivery');
@@ -195,7 +195,7 @@ Route::post('admin/search/by/month', 'Admin\ReportController@SearchByMonth')->na
 
 Route::post('admin/search/by/date', 'Admin\ReportController@SearchByDate')->name('search.by.date');
 
-// Admin Role Routes 
+// Admin Role Routes
 
 Route::get('admin/all/user', 'Admin\UserRoleController@UserRole')->name('admin.all.user');
 
@@ -208,7 +208,7 @@ Route::get('edit/admin/{id}', 'Admin\UserRoleController@UserEdit');
 
 Route::post('admin/update/admin', 'Admin\UserRoleController@UserUpdate')->name('update.admin');
 
-// Admin Site Setting Route 
+// Admin Site Setting Route
 Route::get('admin/site/setting', 'Admin\SettingController@SiteSetting')->name('admin.site.setting');
 
 Route::post('admin/sitesetting', 'Admin\SettingController@UpdateSiteSetting')->name('update.sitesetting');
@@ -224,7 +224,7 @@ Route::get('admin/return/request/', 'Admin\ReturnController@ReturnRequest')->nam
 Route::get('admin/approve/return/{id}', 'Admin\ReturnController@ApproveReturn');
 Route::get('admin/all/return/', 'Admin\ReturnController@AllReturn')->name('admin.all.return');
 
-// Order Stock Route 
+// Order Stock Route
 Route::get('admin/product/stock', 'Admin\UserRoleController@ProductStock')->name('admin.product.stock');
 
 /// Contact page Routes

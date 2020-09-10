@@ -13,7 +13,7 @@ class ProductController extends Controller
     {
         $this->middleware('auth:admin');
     }
- 
+
 
     public function index(){
     $product = DB::table('products')
@@ -21,8 +21,11 @@ class ProductController extends Controller
     				->join('brands','products.brand_id','brands.id')
     				->select('products.*','categories.category_name','brands.brand_name')
     				->get();
-    				// return response()->json($product);
-                return view('admin.product.index',compact('product'));
+    
+        return view('admin.product.index',compact('product'));
+
+//    return response()->json($product);
+
 
     }
 
@@ -31,7 +34,7 @@ class ProductController extends Controller
 
      	$category = DB::table('categories')->get();
      	$brand = DB::table('brands')->get();
-    	
+
     	return view('admin.product.create',compact('category','brand'));
     }
 
@@ -44,7 +47,7 @@ class ProductController extends Controller
 
 
   public function store(Request $request){
-    
+
     $data = array();
     $data['product_name'] = $request->product_name;
     $data['product_code'] = $request->product_code;
@@ -71,7 +74,7 @@ class ProductController extends Controller
     $image_two = $request->image_two;
     $image_three = $request->image_three;
 
-    // return response()->json($data);  
+    // return response()->json($data);
 
     if ($image_one && $image_two && $image_three) {
      $image_one_name = hexdec(uniqid()).'.'.$image_one->getClientOriginalExtension();
@@ -93,9 +96,9 @@ class ProductController extends Controller
             'alert-type'=>'success'
              );
            return Redirect()->back()->with($notification);
- 
+
     }
-  
+
   }
 
 
@@ -119,9 +122,9 @@ class ProductController extends Controller
    }
 
 
-  
+
   public function DeleteProduct($id){
-   
+
    $product = DB::table('products')->where('id',$id)->first();
 
    $image1 = $product->image_one;
@@ -136,7 +139,7 @@ class ProductController extends Controller
             'alert-type'=>'success'
              );
            return Redirect()->back()->with($notification);
- 
+
   }
 
 
@@ -152,7 +155,7 @@ class ProductController extends Controller
 
                     return view('admin.product.show',compact('product'));
     				// return response()->json($product);
-    	 
+
   }
 
 
@@ -164,7 +167,7 @@ class ProductController extends Controller
 
 
  public function UpdateProductWithoutPhoto(Request $request,$id){
-    
+
     $data = array();
     $data['product_name'] = $request->product_name;
     $data['product_code'] = $request->product_code;
@@ -185,7 +188,7 @@ class ProductController extends Controller
     $data['mid_slider'] = $request->mid_slider;
     $data['hot_new'] = $request->hot_new;
     $data['buyone_getone'] = $request->buyone_getone;
-    
+
     $update = DB::table('products')->where('id',$id)->update($data);
     if ($update) {
     	$notification=array(
@@ -212,7 +215,7 @@ class ProductController extends Controller
   	$old_three = $request->old_three;
 
     $data = array();
- 	
+
  	$image_one = $request->file('image_one');
  	$image_two = $request->file('image_two');
  	$image_three = $request->file('image_three');

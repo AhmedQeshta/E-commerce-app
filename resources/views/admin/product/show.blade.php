@@ -1,6 +1,6 @@
 @extends('admin.admin_layouts')
 
- 
+
 
 @section('admin_content')
   <!-- ########## START: MAIN PANEL ########## -->
@@ -15,7 +15,7 @@
 
  <div class="card pd-20 pd-sm-40">
           <h6 class="card-body-title">Product Details Page  </h6>
-           
+
           <div class="form-layout">
             <div class="row mg-b-25">
               <div class="col-lg-4">
@@ -34,15 +34,15 @@
                 <div class="form-group">
                   <label class="form-control-label">Quantity: <span class="tx-danger">*</span></label><br>
                   <strong>{{ $product->product_quantity }}</strong>
-                  
+
                 </div>
               </div><!-- col-4 -->
-               
+
               <div class="col-lg-4">
                 <div class="form-group mg-b-10-force">
                   <label class="form-control-label">Category: <span class="tx-danger">*</span></label><br>
                   <strong>{{ $product->category_name }}</strong>
-       
+
                 </div>
               </div><!-- col-4 -->
 
@@ -51,7 +51,7 @@
                 <div class="form-group mg-b-10-force">
                   <label class="form-control-label">Sub Category: <span class="tx-danger">*</span></label><br>
                   <strong>{{ $product->subcategory_name }}</strong>
-       
+
                 </div>
               </div><!-- col-4 -->
 
@@ -79,7 +79,7 @@
                   <label class="form-control-label">Product Color: <span class="tx-danger">*</span></label>
                     <br>
                   <strong>{{ $product->product_color }}</strong>
- 
+
                 </div>
               </div><!-- col-4 -->
 
@@ -88,7 +88,7 @@
                   <label class="form-control-label">Selling Price: <span class="tx-danger">*</span></label>
                   <br>
                   <strong>{{ $product->selling_price }}</strong>
-                 
+
                 </div>
               </div><!-- col-4 -->
 
@@ -98,7 +98,7 @@
                   <label class="form-control-label">Product Details: <span class="tx-danger">*</span></label>
                   <br>
                  <p>   {!! $product->product_details !!} </p>
-    
+
                 </div>
               </div><!-- col-4 -->
 
@@ -107,7 +107,7 @@
                   <label class="form-control-label">Video Link: <span class="tx-danger">*</span></label>
                   <br>
                   <strong>{{ $product->video_link }}</strong>
-                   
+
                 </div>
               </div><!-- col-4 -->
 
@@ -117,7 +117,7 @@
                 <div class="form-group">
                   <label class="form-control-label">Image One ( Main Thumbnali): <span class="tx-danger">*</span></label><br>
                  <label class="custom-file">
-           
+
             <img src="{{ URL::to($product->image_one) }}" style="height: 80px; width: 80px;">
             </label>
 
@@ -147,7 +147,7 @@
             </label>
 
                 </div>
-              </div><!-- col-4 --> 
+              </div><!-- col-4 -->
 
             </div><!-- row -->
 
@@ -163,12 +163,12 @@
 
          @else
        <span class="badge badge-danger">Inactive</span>
-         @endif 
+         @endif
 
           <span>Main Slider</span>
         </label>
 
-        </div> <!-- col-4 --> 
+        </div> <!-- col-4 -->
 
          <div class="col-lg-4">
         <label class="">
@@ -177,12 +177,12 @@
 
          @else
        <span class="badge badge-danger">Inactive</span>
-         @endif 
-          
+         @endif
+
           <span>Hot Deal</span>
         </label>
 
-        </div> <!-- col-4 --> 
+        </div> <!-- col-4 -->
 
 
 
@@ -193,12 +193,12 @@
 
          @else
        <span class="badge badge-danger">Inactive</span>
-         @endif 
-          
+         @endif
+
           <span>Best Rated</span>
         </label>
 
-        </div> <!-- col-4 --> 
+        </div> <!-- col-4 -->
 
 
          <div class="col-lg-4">
@@ -208,12 +208,12 @@
 
          @else
        <span class="badge badge-danger">Inactive</span>
-         @endif 
-        
+         @endif
+
           <span>Trend Product </span>
         </label>
 
-        </div> <!-- col-4 --> 
+        </div> <!-- col-4 -->
 
  <div class="col-lg-4">
         <label class="">
@@ -222,12 +222,12 @@
 
          @else
        <span class="badge badge-danger">Inactive</span>
-         @endif 
-          
+         @endif
+
           <span>Mid Slider</span>
         </label>
 
-        </div> <!-- col-4 --> 
+        </div> <!-- col-4 -->
 
 <div class="col-lg-4">
        <label class="">
@@ -236,32 +236,46 @@
 
          @else
        <span class="badge badge-danger">Inactive</span>
-         @endif 
-          
+         @endif
+
           <span>Hot New </span>
         </label>
 
-        </div> <!-- col-4 --> 
- 
+</div> <!-- col-4 -->
 
-          </div><!-- end row --> 
- 
- 
+<div class="col-lg-4">
+  <label class="">
+      @if($product->buyone_getone == 1)
+          <span class="badge badge-success">Active</span>
 
-            
+      @else
+          <span class="badge badge-danger">Inactive</span>
+      @endif
+
+      <span>BuyOne GetOne</span>
+  </label>
+
+</div> <!-- col-4 -->
+
+
+          </div><!-- end row -->
+
+
+
+
           </div><!-- form-layout -->
         </div><!-- card -->
- 
-        
+
+
         </div><!-- row -->
 
-  
+
     </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
- 
- 
 
- 
 
- 
+
+
+
+
 @endsection

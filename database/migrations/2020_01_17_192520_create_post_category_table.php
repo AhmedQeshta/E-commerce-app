@@ -12,11 +12,11 @@ class CreatePostCategoryTable extends Migration
      * @return void
      */
     public function up()
-    { 
+    {
         Schema::create('post_category', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('category_name_en');
-            $table->string('category_name_in');
+            $table->string('category_name_ar');
             $table->timestamps();
         });
     }

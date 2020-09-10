@@ -25,19 +25,19 @@ class PostController extends Controller
   public function BlogCatStore(Request $request){
   $validateDate = $request->validate([
   'category_name_en' => 'required|max:255',
-  'category_name_in' => 'required|max:255',
+  'category_name_ar' => 'required|max:255',
 
   ]);
 
   $data = array();
   $data['category_name_en'] = $request->category_name_en;
-  $data['category_name_in'] = $request->category_name_in;
+  $data['category_name_ar'] = $request->category_name_ar;
   DB::table('post_category')->insert($data);
   $notification=array(
             'messege'=>'Blog Category Added Successfully',
             'alert-type'=>'success'
              );
-           return Redirect()->back()->with($notification); 
+           return Redirect()->back()->with($notification);
   }
 
 
@@ -63,14 +63,14 @@ class PostController extends Controller
   public function UpdateBlogCat(Request $request,$id){
   $data = array();
   $data['category_name_en'] = $request->category_name_en;
-  $data['category_name_in'] = $request->category_name_in;
+  $data['category_name_ar'] = $request->category_name_ar;
   DB::table('post_category')->where('id',$id)->update($data);
   $notification=array(
             'messege'=>'Blog Category Update Successfully',
             'alert-type'=>'success'
              );
-           return Redirect()->route('add.blog.categorylist')->with($notification); 
- 
+           return Redirect()->route('add.blog.categorylist')->with($notification);
+
  }
 
 
@@ -86,10 +86,10 @@ class PostController extends Controller
 
   $data = array();
   $data['post_title_en'] = $request->post_title_en;
-  $data['post_title_in'] = $request->post_title_in;
+  $data['post_title_ar'] = $request->post_title_ar;
   $data['category_id'] = $request->category_id;
   $data['details_en'] = $request->details_en;
-  $data['details_in'] = $request->details_in;
+  $data['details_ar'] = $request->details_ar;
 
   $post_image = $request->file('post_image');
 
@@ -113,7 +113,7 @@ class PostController extends Controller
             'alert-type'=>'success'
              );
            return Redirect()->back()->with($notification);
- 
+
        }
   }
 
@@ -126,7 +126,7 @@ class PostController extends Controller
              ->get();
             return view('admin.blog.index',compact('post'));
             // return response()->json($post);
- 
+
   }
 
 
@@ -142,7 +142,7 @@ class PostController extends Controller
             'alert-type'=>'success'
              );
            return Redirect()->back()->with($notification);
- 
+
   }
 
 
@@ -158,10 +158,10 @@ class PostController extends Controller
 
 $data = array();
   $data['post_title_en'] = $request->post_title_en;
-  $data['post_title_in'] = $request->post_title_in;
+  $data['post_title_ar'] = $request->post_title_ar;
   $data['category_id'] = $request->category_id;
   $data['details_en'] = $request->details_en;
-  $data['details_in'] = $request->details_in;
+  $data['details_ar'] = $request->details_ar;
 
   $post_image = $request->file('post_image');
 
@@ -186,10 +186,10 @@ $data = array();
             'alert-type'=>'success'
              );
             return Redirect()->route('all.blogpost')->with($notification);
- 
-       } 
+
+       }
  }
 
- 
+
 
 }
