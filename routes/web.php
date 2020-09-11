@@ -6,8 +6,10 @@ Route::get('/callback/{provider}', 'SocialController@callback');
 
 
 Route::get('/', function () {return view('pages.index');});
+
 //auth & user
 Auth::routes(['verify' => true]);
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/password/change', 'HomeController@changePassword')->name('password.change');
 Route::post('/password/update', 'HomeController@updatePassword')->name('password.update');
@@ -133,7 +135,7 @@ Route::get('coupon/remove/', 'CartController@CouponRemove')->name('coupon.remove
 
 
 
-Route::get('/product/details/{id}/{product_name}', 'ProductController@ProductView');
+Route::get('/product/details/{id}/{product_name}', 'ProductController@ProductView')->name('product.details');
 
 Route::post('/cart/product/add/{id}', 'ProductController@AddCart');
 

@@ -1,4 +1,4 @@
-   
+
    @php
 
 $category = DB::table('categories')->get();
@@ -8,7 +8,7 @@ $category = DB::table('categories')->get();
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        
+
                         <div class="main_nav_content d-flex flex-row">
 
                             <!-- Categories Menu -->
@@ -20,27 +20,27 @@ $category = DB::table('categories')->get();
                                 </div>
 
         <ul class="cat_menu">
-            
+
             @foreach($category as $cat)
             <li class="hassubs">
                 <a href="{{ url('allcategory/'.$cat->id) }}">{{ $cat->category_name }}<i class="fas fa-chevron-right"></i></a>
                 <ul>
 
     @php
-  $subcategory = DB::table('subcategories')->where('category_id',$cat->id)->get();
+      $subcategory = DB::table('subcategories')->where('category_id',$cat->id)->get();
     @endphp
 
                   @foreach($subcategory as $row)
                     <li class="hassubs">
                         <a href="{{ url('products/'.$row->id) }}">{{ $row->subcategory_name }}<i class="fas fa-chevron-right"></i></a>
-                         
+
                     </li>
                     @endforeach
-                    
+
                 </ul>
             </li>
             @endforeach
-            
+
         </ul>
                             </div>
 
@@ -115,16 +115,16 @@ $category = DB::table('categories')->get();
                 </div>
             </div>
         </nav>
-        
+
         <!-- Menu -->
 
         <div class="page_menu">
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        
+
                         <div class="page_menu_content">
-                            
+
                             <div class="page_menu_search">
                                 <form action="#">
                                     <input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
@@ -191,7 +191,7 @@ $category = DB::table('categories')->get();
                                 <li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a></li>
                                 <li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li>
                             </ul>
-                            
+
                             <div class="menu_contact">
                                 <div class="menu_contact_item"><div class="menu_contact_icon"><img src="{{ asset('public/frontend/images/phone_white.png')}}" alt=""></div>+38 068 005 3570</div>
                                 <div class="menu_contact_item"><div class="menu_contact_icon"><img src="{{ asset('public/frontend/images/mail_white.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
@@ -203,5 +203,5 @@ $category = DB::table('categories')->get();
         </div>
 
     </header>
-    
-    
+
+

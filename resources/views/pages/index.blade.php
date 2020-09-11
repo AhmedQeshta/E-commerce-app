@@ -180,80 +180,60 @@
                                 <div class="tabs_line"><span></span></div>
                             </div>
 
-                            <!-- Product Panel -->
-                            <div class="product_panel panel active">
-                                <div class="featured_slider slider">
+                                <!-- Product Panel -->
+                                <div class="product_panel panel active">
+                                    <div class="featured_slider slider">
+                                       @foreach($featured as $row)
+                                            <!-- Slider Item -->
+                                                <a href="{{ url('product/details/'.$row->id.'/'.$row->product_name) }}">
+                                                    <div class="featured_slider_item">
+                                                        <div class="border_active"></div>
+                                                        <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                                                                <div class="product_image d-flex flex-column align-items-center justify-content-center"><a href="{{ url('product/details/'.$row->id.'/'.$row->product_name) }}"><img src="{{ asset( $row->image_one )}}" alt="" style="height: 120px; width: 100px;"></a></div>
+                                                                <div class="product_content">
+                                                                      @if($row->discount_price == NULL)
+                                                                        <div class="product_price discount">${{ $row->selling_price }}</div>
+                                                                      @else
+                                                                        <div class="product_price discount">${{ $row->discount_price }}<span>${{ $row->selling_price }}</span></div>
+                                                                      @endif
+                                                                </div>
+                                                                <div class="product_name">
+                                                                    <div>
+                                                                        <a href="{{ url('product/details/'.$row->id.'/'.$row->product_name) }}">
+                                                                            {{ $row->product_name }}
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="product_extras">
+                                                                     <button id="{{ $row->id }}" class="product_cart_button addcart" data-toggle="modal" data-target="#cartmodal" onclick="productview(this.id)">Add to Cart</button>
+                                                                </div>
+                                                            </div>
 
 
-   @foreach($featured as $row)
-    <!-- Slider Item -->
-    <div class="featured_slider_item">
-        <div class="border_active"></div>
-        <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-            <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{ asset( $row->image_one )}}" alt="" style="height: 120px; width: 100px;"></div>
-            <div class="product_content">
-
-      @if($row->discount_price == NULL)
-<div class="product_price discount">${{ $row->selling_price }}<span> </div>
-      @else
-<div class="product_price discount">${{ $row->discount_price }}<span>${{ $row->selling_price }}</span></div>
-      @endif
-
-
-
-<div class="product_name"><div><a href="{{ url('product/details/'.$row->id.'/'.$row->product_name) }}">{{ $row->product_name }}</a></div></div>
-
-
-              <!--   <div class="product_extras">
-
-     <button class="product_cart_button addcart" data-id="{{ $row->id }}">Add to Cart</button>
-                </div>
-            </div> -->
-
-            <div class="product_extras">
-
-     <button id="{{ $row->id }}" class="product_cart_button addcart" data-toggle="modal" data-target="#cartmodal" onclick="productview(this.id)">Add to Cart</button>
-                </div>
-            </div>
-
-
-             <button class="addwishlist" data-id="{{ $row->id }}" >
-            <div class="product_fav"><i class="fas fa-heart"></i></div>
-            </button>
-
-
-            <ul class="product_marks">
-       @if($row->discount_price == NULL)
-       <li class="product_mark product_discount" style="background: blue;">New</li>
-       @else
-                       <li class="product_mark product_discount">
-                       @php
-                         $amount = $row->selling_price - $row->discount_price;
-                         $discount = $amount/$row->selling_price*100;
-
-                       @endphp
-
-                       {{ intval($discount) }}%
-
-                      </li>
-       @endif
-
-
-
-            </ul>
-        </div>
-    </div>
-    @endforeach
-
+                                                        <button class="addwishlist" data-id="{{ $row->id }}" >
+                                                            <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                                        </button>
+                                                        <ul class="product_marks">
+                                                               @if($row->discount_price == NULL)
+                                                                    <li class="product_mark product_discount" style="background: blue;">New</li>
+                                                               @else
+                                                                    <li class="product_mark product_discount">
+                                                                       @php
+                                                                         $amount = $row->selling_price - $row->discount_price;
+                                                                         $discount = $amount/$row->selling_price*100;
+                                                                       @endphp
+                                                                       {{ intval($discount) }}%
+                                                                    </li>
+                                                                @endif
+                                                            </ul>
+                                                    </div>
+                                                </a>
+                                        @endforeach
+                                    </div>
                                 </div>
-                                <div class="featured_slider_dots_cover"></div>
-                            </div>
-
-
-
+                            <div class="featured_slider_dots_cover"></div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

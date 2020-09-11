@@ -3,10 +3,10 @@
 
 @php
 $order = DB::table('orders')->where('user_id',Auth::id())->orderBy('id','DESC')->limit(10)->get();
-@endphp 
+@endphp
 
 <div class="contact_form">
-  <div class="container"> 
+  <div class="container">
     <div class="row">
       <div class="col-8 card">
         <table class="table table-response">
@@ -42,7 +42,7 @@ $order = DB::table('orders')->where('user_id',Auth::id())->orderBy('id','DESC')-
             @else
             <span class="badge badge-danger">Cancle</span>
 
-          @endif  
+          @endif
 
                 </td>
 
@@ -54,37 +54,37 @@ $order = DB::table('orders')->where('user_id',Auth::id())->orderBy('id','DESC')-
              @endforeach
 
           </tbody>
-          
+
         </table>
-        
+
       </div>
 
       <div class="col-4">
         <div class="card">
-          <img src="{{ asset('public/frontend/images/kaziariyan.png') }}" class="card-img-top" style="height: 90px; width: 90px; margin-left: 34%;">
+          <img src="{{ asset('public/frontend/images/img8.jpg') }}" class="card-img-top" style="margin:25px auto;height: 90px; width: 90px;border-radius: 50%">
           <div class="card-body">
             <h5 class="card-title text-center">{{ Auth::user()->name }}</h5>
-            
+
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item"> <a href="{{ route('password.change') }}">Change Password</a>  </li>
              <li class="list-group-item">Edit Profile</li>
-              <li class="list-group-item"><a href="{{ route('success.orderlist') }}"> Return Order</a> </li> 
+              <li class="list-group-item"><a href="{{ route('success.orderlist') }}"> Return Order</a> </li>
           </ul>
 
           <div class="card-body">
             <a href="{{ route('user.logout') }}" class="btn btn-danger btn-sm btn-block">Logout</a>
-            
+
           </div>
-          
+
         </div>
-        
+
       </div>
 
     </div>
 
   </div>
-  
+
 
 </div>
 

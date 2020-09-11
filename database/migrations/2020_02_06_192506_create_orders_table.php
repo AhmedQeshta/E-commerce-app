@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->string('user_id')->nullable();
             $table->string('payment_id')->nullable();
+            $table->string('status_code')->nullable();
             $table->string('paying_amount')->nullable();
             $table->string('blnc_transection')->nullable();
             $table->string('stripe_order_id')->nullable();

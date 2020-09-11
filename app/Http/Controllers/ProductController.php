@@ -20,11 +20,24 @@ class ProductController extends Controller
 
     	$color = $product->product_color;
     	$product_color = explode(',', $color);
-    	
+
     	$size = $product->product_size;
-    	$product_size = explode(',', $size);		
+    	$product_size = explode(',', $size);
 
     	return view('pages.product_details',compact('product','product_color','product_size'));
+
+    }
+
+    public function ProductsView($id){
+
+        $products = DB::table('products')->where('subcategory_id',$id)->paginate(5);
+
+        $categorys = DB::table('categories')->get();
+
+        $brands = DB::table('products')->where('subcategory_id',$id)->select('brand_id')->groupBy('brand_id')->get();
+
+        return view('pages.all_products',compact('products','categorys','brands'));
+
 
     }
 
@@ -33,7 +46,7 @@ class ProductController extends Controller
 $product = DB::table('products')->where('id',$id)->first();
 
   $data = array();
- 
+
  if ($product->discount_price == NULL) {
  	$data['id'] = $product->id;
  	$data['name'] = $product->product_name;
@@ -66,26 +79,15 @@ $product = DB::table('products')->where('id',$id)->first();
                          );
                        return Redirect()->back()->with($notification);
 
-    }   
+    }
 
       }
 
 
 
-      public function ProductsView($id){
-       
-       $products = DB::table('products')->where('subcategory_id',$id)->paginate(5);
-
-       $categorys = DB::table('categories')->get();
-
-       $brands = DB::table('products')->where('subcategory_id',$id)->select('brand_id')->groupBy('brand_id')->get();
-
-       return view('pages.all_products',compact('products','categorys','brands'));
 
 
-      }
 
-  
   public function CategoryView($id){
 
     $category_all =  DB::table('products')->where('category_id',$id)->paginate(10);

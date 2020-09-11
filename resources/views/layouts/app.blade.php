@@ -179,7 +179,7 @@ $setting = DB::table('sitesetting')->first();
 
                                 <div class="wishlist_icon"><img src="{{ asset('public/frontend/images/heart.png')}}" alt=""></div>
                                 <div class="wishlist_content">
-                                    <div class="wishlist_text"><a href="#">Wishlist</a></div>
+                                    <div class="wishlist_text"><a href="{{ route('user.wishlist') }}">Wishlist</a></div>
                                     <div class="wishlist_count">{{ count($wishlist) }}</div>
                                 </div>
                             </div>
@@ -277,7 +277,7 @@ $setting = DB::table('sitesetting')->first();
                         <ul class="footer_list">
                             <li><a href="#">My Account</a></li>
                             <li><a href="#">Order Tracking</a></li>
-                            <li><a href="#">Wish List</a></li>
+                            <li><a href="{{ route('user.wishlist') }}">Wish List</a></li>
                             <li><a href="#">Customer Services</a></li>
                             <li><a href="#">Returns / Exchange</a></li>
                             <li><a href="#">FAQs</a></li>
