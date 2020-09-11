@@ -15,8 +15,8 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('vat')->nullable();
-            $table->string('shipping_charge')->nullable();
+            $table->string('vat')->nullable()->default(10);
+            $table->string('shipping_charge')->nullable()->default(50);
             $table->string('shopname')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();

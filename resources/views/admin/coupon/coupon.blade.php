@@ -3,19 +3,19 @@
 @section('admin_content')
 
  <div class="sl-mainpanel">
-     
+
 
       <div class="sl-pagebody">
         <div class="sl-page-title">
           <h5>Coupon List</h5>
-         
+
         </div><!-- sl-page-title -->
 
         <div class="card pd-20 pd-sm-40">
           <h6 class="card-body-title">Coupon List
   <a href="#" class="btn btn-sm btn-warning" style="float: right;" data-toggle="modal" data-target="#modaldemo3">Add New</a>
           </h6>
-           
+
 
           <div class="table-wrapper">
             <table id="datatable1" class="table display responsive nowrap">
@@ -25,7 +25,7 @@
                   <th class="wd-15p">Coupon Code</th>
                   <th class="wd-15p">Coupon Percentage</th>
                   <th class="wd-20p">Action</th>
-                  
+
                 </tr>
               </thead>
               <tbody>
@@ -38,18 +38,18 @@
                     <a href="{{ URL::to('edit/coupon/'.$row->id) }} " class="btn btn-sm btn-info">Edit</a>
                     <a href="{{ URL::to('delete/coupon/'.$row->id) }}" class="btn btn-sm btn-danger" id="delete">Delete</a>
                   </td>
-                   
+
                 </tr>
                 @endforeach
-                 
+
               </tbody>
             </table>
           </div><!-- table-wrapper -->
         </div><!-- card -->
 
-        
 
- 
+
+
     </div><!-- sl-mainpanel -->
 
 
@@ -64,7 +64,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-             
+
       @if ($errors->any())
           <div class="alert alert-danger">
               <ul>
@@ -76,19 +76,19 @@
       @endif
        <form method="post" action="{{ route('store.coupon') }}">
         @csrf
-         <div class="modal-body pd-20"> 
+         <div class="modal-body pd-20">
         <div class="form-group">
           <label for="exampleInputEmail1">Coupon Code </label>
           <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Coupon Code" name="coupon">
-          
+
         </div>
 
          <div class="form-group">
-          <label for="exampleInputEmail1">Coupon Discount (%) </label>
+          <label for="exampleInputEmail1">Coupon Discount ($) </label>
           <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Coupon Discount" name="discount">
-          
+
         </div>
-          
+
               </div><!-- modal-body -->
               <div class="modal-footer">
                 <button type="submit" class="btn btn-info pd-x-20">Sumbit</button>
@@ -99,6 +99,6 @@
           </div><!-- modal-dialog -->
         </div><!-- modal -->
 
- 
+
 
 @endsection

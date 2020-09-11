@@ -15,7 +15,7 @@
 						<div class="cart_title">Shopping Cart</div>
 						<div class="cart_items">
 							<ul class="cart_list">
-                              
+
                               @foreach($cart as $row)
 
 		<li class="cart_item clearfix">
@@ -34,7 +34,7 @@
 					<div class="cart_item_text"> {{ $row->options->color }}</div>
 				</div>
 				 @endif
- 
+
 
                 @if($row->options->size == NULL)
 
@@ -44,18 +44,18 @@
 					<div class="cart_item_text"> {{ $row->options->size }}</div>
 				</div>
                 @endif
-                  
+
 
 				<div class="cart_item_quantity cart_info_col">
-					<div class="cart_item_title">Quantity</div><br> 
+					<div class="cart_item_title">Quantity</div><br>
 
            <form method="post" action="{{ route('update.cartitem') }}">
            	@csrf
            	<input type="hidden" name="productid" value="{{ $row->rowId }}">
            	<input type="number" name="qty" value="{{ $row->qty }}" style="width: 50px;">
            	<button type="submit" class="btn btn-success btn-sm"><i class="fas fa-check-square"></i> </button>
- 
-           </form>  
+
+           </form>
 				</div>
 
 
@@ -66,7 +66,7 @@
 				</div>
 				<div class="cart_item_total cart_info_col">
 					<div class="cart_item_title">Total</div>
-					<div class="cart_item_text">${{ $row->price*$row->qty }}</div>
+					<div class="cart_item_text">$ {{ $row->price*$row->qty }}</div>
 				</div>
 
                 <div class="cart_item_total cart_info_col">
@@ -81,18 +81,19 @@
 								@endforeach
 							</ul>
 						</div>
-						
+
 						<!-- Order Total -->
 						<div class="order_total">
 							<div class="order_total_content text-md-right">
 								<div class="order_total_title">Order Total:</div>
-								<div class="order_total_amount">${{ Cart::total() }}</div>
+{{--								<div class="order_total_amount">${{ Cart::total() }}</div>--}}
+								<div class="order_total_amount">$ {{ $row->price*$row->qty }}</div>
 							</div>
 						</div>
 
 						<div class="cart_buttons">
 							<button type="button" class="button cart_button_clear">All Cancel</button>
-	 <a href="{{ route('user.checkout') }}"  class="button cart_button_checkout">Checkout</a> 
+	 <a href="{{ route('user.checkout') }}"  class="button cart_button_checkout">Checkout</a>
 						</div>
 					</div>
 				</div>

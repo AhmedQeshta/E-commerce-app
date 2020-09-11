@@ -13,11 +13,11 @@ use Session;
 class CartController extends Controller
 {
     public function AddCart($id){
- 
+
  $product = DB::table('products')->where('id',$id)->first();
 
   $data = array();
- 
+
  if ($product->discount_price == NULL) {
  	$data['id'] = $product->id;
  	$data['name'] = $product->product_name;
@@ -42,7 +42,7 @@ class CartController extends Controller
  	 Cart::add($data);
  	 return \Response::json(['success' => 'Successfully Added on your Cart']);
 
- } 
+ }
 
     }
 
@@ -96,9 +96,9 @@ class CartController extends Controller
 
     	$color = $product->product_color;
     	$product_color = explode(',', $color);
-    	
+
     	$size = $product->product_size;
-    	$product_size = explode(',', $size);	
+    	$product_size = explode(',', $size);
 
    return response::json(array(
     'product' => $product,
@@ -119,7 +119,7 @@ class CartController extends Controller
     $qty = $request->qty;
 
   $data = array();
- 
+
  if ($product->discount_price == NULL) {
  	$data['id'] = $product->id;
  	$data['name'] = $product->product_name;
@@ -152,25 +152,25 @@ class CartController extends Controller
                          );
                        return Redirect()->back()->with($notification);
 
- } 
+ }
 
-   } 
+   }
 
 
 
    public function Checkout(){
-  if (Auth::check()) {
+          if (Auth::check()) {
 
-  	$cart = Cart::content();
-    	return view('pages.checkout',compact('cart'));
+            $cart = Cart::content();
+                return view('pages.checkout',compact('cart'));
 
-  }else{
-  	$notification=array(
-                        'messege'=>'At first Login Your Account',
-                        'alert-type'=>'success'
-                         );
-                       return Redirect()->route('login')->with($notification);
-  } 
+          }else{
+            $notification=array(
+                    'messege'=>'At first Login Your Account',
+                    'alert-type'=>'success'
+                     );
+                   return Redirect()->route('login')->with($notification);
+          }
 
    }
 
@@ -184,7 +184,7 @@ class CartController extends Controller
            ->get();
           // return response()->json($product);
            return view('pages.wishlist',compact('product'));
- 
+
    }
 
 
@@ -193,16 +193,18 @@ class CartController extends Controller
 
     $check = DB::table('coupons')->where('coupon',$coupon)->first();
     if ($check) {
-    Session::put('coupon',[
-    'name' => $check->coupon,
-    'discount' => $check->discount,
-    'balance' => Cart::Subtotal()-$check->discount 
-    ]);
-    	$notification=array(
-                        'messege'=>'Successfully Coupon Applied',
-                        'alert-type'=>'success'
-                         );
-                       return Redirect()->back()->with($notification);
+        Session::put('coupon',[
+            'name' => $check->coupon,
+            'discount' => $check->discount,
+//            'balance' => Cart::Subtotal()-$check->discount
+                            //        this is coupon (%)
+            'balance' => Cart::Subtotal()-(Cart::Subtotal()*($check->discount/100)),
+            ]);
+            $notification=array(
+                            'messege'=>'Successfully Coupon Applied',
+                            'alert-type'=>'success'
+                             );
+                           return Redirect()->back()->with($notification);
 
 
     }else{
@@ -229,7 +231,7 @@ class CartController extends Controller
 
 
  public function PaymentPage(){
- 
+
   $cart = Cart::Content();
   return view('pages.payment',compact('cart'));
 
@@ -237,7 +239,7 @@ class CartController extends Controller
 
 
  public function Search(Request $request){
- 
+
   $item = $request->search;
   // echo "$item";
 
@@ -245,7 +247,7 @@ class CartController extends Controller
             ->where('product_name','LIKE',"%$item%")
             ->paginate(20);
 
-    return view('pages.search',compact('products'));        
+    return view('pages.search',compact('products'));
 
 
  }

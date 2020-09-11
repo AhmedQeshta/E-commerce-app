@@ -15,12 +15,12 @@ class CreateSeoTable extends Migration
     {
         Schema::create('seo', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('meta_title')->nullable();
-            $table->string('meta_author')->nullable();
-            $table->string('meta_tag')->nullable();
-            $table->text('meta_description')->nullable();
-            $table->text('google_analytics')->nullable();
-            $table->text('bing_analytics')->nullable();
+            $table->string('meta_title')->nullable()->default('UC-Title');
+            $table->string('meta_author')->nullable()->default('Ahmed Qeshta');
+            $table->string('meta_tag')->nullable()->default('html,css,js,laravel,web,developer');
+            $table->text('meta_description')->nullable()->default('html css js laravel web developer');
+            $table->text('google_analytics')->nullable()->default('google_analytics');
+            $table->text('bing_analytics')->nullable()->default('bing_analytics');
             $table->timestamps();
         });
     }
