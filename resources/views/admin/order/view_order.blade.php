@@ -2,11 +2,14 @@
 
 @section('admin_content')
 
- <div class="sl-mainpanel"> 
+ <div class="sl-mainpanel">
       <div class="sl-pagebody">
 
       <div class="card pd-20 pd-sm-40">
-          <h6 class="card-body-title">Order Details  </h6>
+          <div class="d-flex justify-content-sm-between py-2">
+              <h6 class="card-body-title ">Order Details </h6>
+              <a href="{{route('admin.printViewOrder',$order->id)}}" class="btn btn-secondary" style="border-radius: 5px">Print</a>
+          </div>
 
 
   <div class="row">
@@ -17,52 +20,52 @@
          	<table class="table">
          		<tr>
          	<th> Name: </th>
-         	<th> {{ $order->name }} </th>		
+         	<th> {{ $order->name }} </th>
          		</tr>
 
          		<tr>
          	<th> Phone: </th>
-         	<th> {{ $order->phone }} </th>		
+         	<th> {{ $order->phone }} </th>
          		</tr>
 
 
 
          		<tr>
          	<th> Payment Type: </th>
-         	<th>{{ $order->payment_type }} </th>		
+         	<th>{{ $order->payment_type }} </th>
          		</tr>
 
 
 
          		<tr>
          	<th> Payment Id: </th>
-         	<th> {{ $order->payment_id }} </th>		
+         	<th> {{ $order->payment_id }} </th>
          		</tr>
 
 
          		<tr>
          	<th> Total : </th>
-         	<th> {{ $order->total }} $ </th>		
+         	<th> {{ $order->total }} $ </th>
          		</tr>
 
          		<tr>
          	<th> Month: </th>
-         	<th> {{ $order->month }} </th>		
+         	<th> {{ $order->month }} </th>
          		</tr>
 
          			<tr>
          	<th> Date: </th>
-         	<th> {{ $order->date }} </th>		
+         	<th> {{ $order->date }} </th>
          		</tr>
-         		
+
          	</table>
-         	
+
 
          </div>
 
 
 
-         </div>     
+         </div>
     </div>
 
 
@@ -74,32 +77,32 @@
          	<table class="table">
          		<tr>
          	<th> Name: </th>
-         	<th> {{ $shipping->ship_name }} </th>		
+         	<th> {{ $shipping->ship_name }} </th>
          		</tr>
 
          		<tr>
          	<th> Phone: </th>
-         	<th> {{ $shipping->ship_phone }} </th>		
+         	<th> {{ $shipping->ship_phone }} </th>
          		</tr>
 
 
 
          		<tr>
          	<th> Email: </th>
-         	<th>{{ $shipping->ship_email }} </th>		
+         	<th>{{ $shipping->ship_email }} </th>
          		</tr>
 
 
 
          		<tr>
          	<th> Address: </th>
-         	<th> {{ $shipping->ship_address }} </th>		
+         	<th> {{ $shipping->ship_address }} </th>
          		</tr>
 
 
          		<tr>
          	<th> City : </th>
-         	<th> {{ $shipping->ship_city }} </th>		
+         	<th> {{ $shipping->ship_city }} </th>
          		</tr>
 
          		<tr>
@@ -116,20 +119,20 @@
             @else
             <span class="badge badge-danger">Cancle</span>
 
-         	@endif  
+         	@endif
 
-         	 </th>	
+         	 </th>
 
          		</tr>
- 
-         		
-         	</table> 
-         </div> 
 
-         </div>     
+
+         	</table>
+         </div>
+
+         </div>
     </div>
 
- 
+
 
   </div>
 
@@ -138,9 +141,9 @@
 
  <div class="card pd-20 pd-sm-40 col-lg-12">
           <h6 class="card-body-title">Product Details
-   
+
           </h6>
-           
+
 
           <div class="table-wrapper">
             <table class="table display responsive nowrap">
@@ -154,7 +157,7 @@
                   <th class="wd-15p">Quantity</th>
                   <th class="wd-15p">Unit Price</th>
                   <th class="wd-20p">Total</th>
-                  
+
                 </tr>
               </thead>
               <tbody>
@@ -169,16 +172,16 @@
                  <td>{{ $row->quantity }}</td>
                  <td>{{ $row->singleprice }}</td>
                  <td>{{ $row->totalprice }}</td>
- 
+
                 </tr>
                 @endforeach
-                 
+
               </tbody>
             </table>
           </div><!-- table-wrapper -->
         </div><!-- card -->
 
- 	
+
  </div>
 
 
@@ -196,7 +199,7 @@
   @endif
 
 
-  
+
 
 
 
@@ -204,4 +207,3 @@
    </div>
 </div>
  @endsection
-      	
