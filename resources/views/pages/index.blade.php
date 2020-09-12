@@ -185,7 +185,7 @@
                                     <div class="featured_slider slider">
                                        @foreach($featured as $row)
                                             <!-- Slider Item -->
-                                                <a href="{{ url('product/details/'.$row->id.'/'.$row->product_name) }}">
+
                                                     <div class="featured_slider_item">
                                                         <div class="border_active"></div>
                                                         <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
@@ -227,7 +227,7 @@
                                                                 @endif
                                                             </ul>
                                                     </div>
-                                                </a>
+
                                         @endforeach
                                     </div>
                                 </div>

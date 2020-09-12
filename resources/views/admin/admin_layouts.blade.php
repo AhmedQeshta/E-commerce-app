@@ -60,6 +60,18 @@
           .notActive{
               background: #eaf4ff;
           }
+          .li-relative-ul{
+            position: relative
+          }
+          .notifiction-li-order{
+              margin:0px 5px;
+              border-radius: 100%;
+              font-size:14px;
+              position: absolute;
+              right: 10px;
+              top:50%;
+              transform: translateY(-50%);
+          }
       </style>
   </head>
 
@@ -134,19 +146,29 @@
 
 
 @if(Auth::user()->order == 1)
+  @php
+      $newOrder = DB::table('orders')->where('status',0)->get();
+      $acceptPayment = DB::table('orders')->where('status',1)->get();
+      $processDelivery = DB::table('orders')->where('status',2)->get();
+      $deliverySuccess = DB::table('orders')->where('status',3)->get();
+      $cancelOrder = DB::table('orders')->where('status',4)->get();
+  @endphp
    <a href="#" class="sl-menu-link {{ Request::is('admin/pading/order','admin/cancel/order','admin/*/payment') ? 'active' : '' }}">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-bookmarks-outline tx-20"></i>
             <span class="menu-item-label">Orders</span>
+              @if($newOrder->count()>0||$acceptPayment->count()>0||$processDelivery->count()>0)
+                    <i style="color:#ff5252; margin: 0px 10px" class="menu-item-arrow fa fa-bell "></i>
+              @endif
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/pading/order','admin/cancel/order','admin/*/payment') ? 'open' : '' }}">
-          <li class="nav-item {{ Request::is('admin/pading/order') ? 'hover' : '' }}"><a href="{{ route('admin.neworder') }}" class="nav-link">New Order</a></li>
-          <li class="nav-item {{ Request::is('admin/accept/payment') ? 'hover' : '' }}"><a href="{{ route('admin.accept.payment') }}" class="nav-link">Accept Payment </a></li>
-           <li class="nav-item {{ Request::is('admin/cancel/order') ? 'hover' : '' }}"><a href="{{ route('admin.cancel.order') }}" class="nav-link">Cancel Order </a></li>
-          <li class="nav-item {{ Request::is('admin/process/payment') ? 'hover' : '' }}"><a href="{{ route('admin.process.payment') }}" class="nav-link">Process Delivery </a></li>
-          <li class="nav-item {{ Request::is('admin/success/payment') ? 'hover' : '' }}"><a href="{{ route('admin.success.payment') }}" class="nav-link">Delivery Success </a></li>
+        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/pading/order','admin/cancel/order','admin/*/payment','admin/view/order/*') ? 'open' : '' }}">
+          <li  class="li-relative-ul nav-item {{ Request::is('admin/pading/order') ? 'hover' : '' }}"><a href="{{ route('admin.neworder') }}" class="nav-link">New Order @if($newOrder->count()>0) <span class="badge badge-danger notifiction-li-order">{{$newOrder->count()}}</span> @endif  </a></li>
+          <li  class="li-relative-ul nav-item {{ Request::is('admin/accept/payment') ? 'hover' : '' }}"><a href="{{ route('admin.accept.payment') }}" class="nav-link">Accept Payment </a> @if($acceptPayment->count()>0) <span class="badge badge-danger notifiction-li-order" >{{$acceptPayment->count()}}</span> @endif  </li>
+          <li  class="li-relative-ul nav-item {{ Request::is('admin/process/payment') ? 'hover' : '' }}"><a href="{{ route('admin.process.payment') }}" class="nav-link">Process Delivery </a> @if($processDelivery->count()>0) <span class="badge badge-danger notifiction-li-order" >{{$processDelivery->count()}}</span> @endif </li>
+          <li  class="li-relative-ul nav-item {{ Request::is('admin/success/payment') ? 'hover' : '' }}"><a href="{{ route('admin.success.payment') }}" class="nav-link">Delivery Success  </a> @if($deliverySuccess->count()>0) <span class="badge badge-dark notifiction-li-order" >{{$deliverySuccess->count()}}</span> @endif </li>
+          <li  class="li-relative-ul nav-item {{ Request::is('admin/cancel/order') ? 'hover' : '' }}"><a href="{{ route('admin.cancel.order') }}" class="nav-link">Cancel Order </a> @if($cancelOrder->count()>0) <span class="badge badge-dark notifiction-li-order">{{$cancelOrder->count()}}</span> @endif </li>
         </ul>
 
      @else

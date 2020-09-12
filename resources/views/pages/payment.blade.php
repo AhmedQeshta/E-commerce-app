@@ -158,10 +158,10 @@ $vat = $setting->vat;
 
     <div class="contact_form_title text-center"> Payment By </div>
     <div class="form-group">
-        <ul class="logos_list">
+        <ul class="logos_list text-center">
             <li><input type="radio" name="payment" value="stripe"><img src="{{ asset('public/frontend/images/mastercard.png') }}" style="width: 100px; height: 60px;"> </li>
 
-             <li><input type="radio" name="payment" value="paypal"><img src="{{ asset('public/frontend/images/paypal.png') }}" style="width: 100px; height: 60px;"> </li>
+{{--             <li><input type="radio" name="payment" value="paypal"><img src="{{ asset('public/frontend/images/paypal.png') }}" style="width: 100px; height: 60px;"> </li>--}}
 
               <li><input type="radio" name="payment" value="oncash"><img src="{{ asset('public/frontend/images/delivery.png') }}" style="width: 100px; height: 60px;"> </li>
 

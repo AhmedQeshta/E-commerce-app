@@ -24,30 +24,30 @@ class PaymentController extends Controller
     // dd($data);
 
     if ($request->payment == 'stripe') {
-    	
+
     return view('pages.payment.stripe',compact('data'));
 
     }elseif ($request->payment == 'paypal') {
-    	# code...
+
     }elseif ($request->payment == 'oncash') {
 
      return view('pages.payment.oncash',compact('data'));
 
     }else{
     	echo "Cash On Delivery";
-    }  
-    
+    }
+
 
    }
 
 
   public function StripeCharge(Request $request){
-         
+
          $email = Auth::user()->email;
           $total = $request->total;
 		// Set your secret key: remember to change this to your live secret key in production
 		// See your keys here: https://dashboard.stripe.com/account/apikeys
-		\Stripe\Stripe::setApiKey('sk_test_hgIwd4DLIo1EVFkN5cobW01400dcJ7MFpi');
+		\Stripe\Stripe::setApiKey('sk_test_5ZirZT3iIt0WKpWjL9HAjzFr00FH2pBhQp');
 
 		// Token is created using Checkout or Elements!
 		// Get the payment token ID submitted by the form:
@@ -56,11 +56,11 @@ class PaymentController extends Controller
 		$charge = \Stripe\Charge::create([
 		    'amount' => $total*100,
 		    'currency' => 'usd',
-		    'description' => 'Udemy Ecommerce Details',
+		    'description' => 'A7M-Store Details',
 		    'source' => $token,
 		    'metadata' => ['order_id' => uniqid()],
 		]);
-   
+
     $data = array();
     $data['user_id'] = Auth::id();
     $data['payment_id'] = $charge->payment_method;
@@ -88,7 +88,7 @@ class PaymentController extends Controller
   Mail::to($email)->send(new invoiceMail($data));
 
 
-    /// Insert Shipping Table 
+    /// Insert Shipping Table
 
     $shipping = array();
     $shipping['order_id'] = $order_id;
@@ -100,7 +100,7 @@ class PaymentController extends Controller
     DB::table('shipping')->insert($shipping);
 
     // Insert Order Details Table
-    
+
     $content = Cart::content();
     $details = array();
     foreach ($content as $row) {
@@ -112,7 +112,7 @@ class PaymentController extends Controller
     $details['quantity'] = $row->qty;
     $details['singleprice'] = $row->price;
     $details['totalprice'] = $row->qty*$row->price;
-    DB::table('orders_details')->insert($details); 
+    DB::table('orders_details')->insert($details);
 
     }
 
@@ -125,7 +125,7 @@ class PaymentController extends Controller
                         'alert-type'=>'success'
                          );
                        return Redirect()->to('/')->with($notification);
-  
+
   }
 
 
@@ -133,9 +133,9 @@ class PaymentController extends Controller
 
 
 public function OnCash(Request $request){
-         
-      
-   
+
+
+
     $data = array();
     $data['user_id'] = Auth::id();
     $data['shipping'] = $request->shipping;
@@ -155,8 +155,8 @@ public function OnCash(Request $request){
     $data['year'] = date('Y');
     $order_id = DB::table('orders')->insertGetId($data);
 
-   
-    /// Insert Shipping Table 
+
+    /// Insert Shipping Table
 
     $shipping = array();
     $shipping['order_id'] = $order_id;
@@ -168,7 +168,7 @@ public function OnCash(Request $request){
     DB::table('shipping')->insert($shipping);
 
     // Insert Order Details Table
-    
+
     $content = Cart::content();
     $details = array();
     foreach ($content as $row) {
@@ -180,7 +180,7 @@ public function OnCash(Request $request){
     $details['quantity'] = $row->qty;
     $details['singleprice'] = $row->price;
     $details['totalprice'] = $row->qty*$row->price;
-    DB::table('orders_details')->insert($details); 
+    DB::table('orders_details')->insert($details);
 
     }
 
@@ -193,12 +193,12 @@ public function OnCash(Request $request){
                         'alert-type'=>'success'
                          );
                        return Redirect()->to('/')->with($notification);
-  
+
   }
 
 
 
- 
+
 
 
 

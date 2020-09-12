@@ -6,8 +6,8 @@
 
 @php
 $setting = DB::table('settings')->first();
-$charge = $setting->shipping_charge; 
-$vat = $setting->vat; 
+$charge = $setting->shipping_charge;
+$vat = $setting->vat;
 $cart = Cart::Content();
 @endphp
 
@@ -56,7 +56,7 @@ $cart = Cart::Content();
 
 
 
-       
+
 <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/contact_styles.css') }} ">
 <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/contact_responsive.css') }}">
 
@@ -67,69 +67,69 @@ $cart = Cart::Content();
                     <div class="contact_form_container">
                         <div class="contact_form_title text-center">Cart Products</div>
 
-          
+
                           <div class="cart_items">
                             <ul class="cart_list">
-                              
+
                               @foreach($cart as $row)
 
-        <li class="cart_item clearfix">
-             
-
-
-            <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-
-                 <div class="cart_item_name cart_info_col">
-                    <div class="cart_item_title"><b>Product Image</b></div>
-                    <div class="cart_item_text"><img src="{{ asset($row->options->image) }} " style="width: 70px; width: 70px;" alt=""></div>
-                </div>
-
-
-                <div class="cart_item_name cart_info_col">
-                    <div class="cart_item_title"><b>Name</b></div>
-                    <div class="cart_item_text">{{ $row->name  }}</div>
-                </div>
-
-                @if($row->options->color == NULL)
-
-                @else
-                <div class="cart_item_color cart_info_col">
-                    <div class="cart_item_title"><b>Color</b></div>
-                    <div class="cart_item_text"> {{ $row->options->color }}</div>
-                </div>
-                 @endif
- 
-
-                @if($row->options->size == NULL)
-
-                @else
-                <div class="cart_item_color cart_info_col">
-                    <div class="cart_item_title"><b>Size</b></div>
-                    <div class="cart_item_text"> {{ $row->options->size }}</div>
-                </div>
-                @endif
-                  
-
-                <div class="cart_item_quantity cart_info_col">
-                    <div class="cart_item_title"><b>Quantity</b></div> 
-                 <div class="cart_item_text"> {{ $row->qty }}</div>
-           
-                </div>
+                                    <li class="cart_item clearfix">
 
 
 
-                <div class="cart_item_price cart_info_col">
-                    <div class="cart_item_title"><b>Price</b></div>
-                    <div class="cart_item_text">${{ $row->price }}</div>
-                </div>
-                <div class="cart_item_total cart_info_col">
-                    <div class="cart_item_title"><b>Total</b></div>
-                    <div class="cart_item_text">${{ $row->price*$row->qty }}</div>
-                </div>
+                                        <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
 
-                 
-            </div>
-        </li>
+                                             <div class="cart_item_name cart_info_col">
+                                                <div class="cart_item_title"><b>Product Image</b></div>
+                                                <div class="cart_item_text"><img src="{{ asset($row->options->image) }} " style="width: 70px; width: 70px;" alt=""></div>
+                                            </div>
+
+
+                                            <div class="cart_item_name cart_info_col">
+                                                <div class="cart_item_title"><b>Name</b></div>
+                                                <div class="cart_item_text">{{ $row->name  }}</div>
+                                            </div>
+
+                                            @if($row->options->color == NULL)
+
+                                            @else
+                                            <div class="cart_item_color cart_info_col">
+                                                <div class="cart_item_title"><b>Color</b></div>
+                                                <div class="cart_item_text"> {{ $row->options->color }}</div>
+                                            </div>
+                                             @endif
+
+
+                                            @if($row->options->size == NULL)
+
+                                            @else
+                                            <div class="cart_item_color cart_info_col">
+                                                <div class="cart_item_title"><b>Size</b></div>
+                                                <div class="cart_item_text"> {{ $row->options->size }}</div>
+                                            </div>
+                                            @endif
+
+
+                                            <div class="cart_item_quantity cart_info_col">
+                                                <div class="cart_item_title"><b>Quantity</b></div>
+                                             <div class="cart_item_text"> {{ $row->qty }}</div>
+
+                                            </div>
+
+
+
+                                            <div class="cart_item_price cart_info_col">
+                                                <div class="cart_item_title"><b>Price</b></div>
+                                                <div class="cart_item_text">${{ $row->price }}</div>
+                                            </div>
+                                            <div class="cart_item_total cart_info_col">
+                                                <div class="cart_item_title"><b>Total</b></div>
+                                                <div class="cart_item_text">${{ $row->price*$row->qty }}</div>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>
@@ -145,8 +145,8 @@ $cart = Cart::Content();
             <li class="list-group-item">Subtotal : <span style="float: right;">
             ${{  Cart::Subtotal() }} </span> </li>
             @endif
-            
-          
+
+
 
             <li class="list-group-item">Shiping Charge : <span style="float: right;">${{ $charge  }} </span> </li>
             <li class="list-group-item">Vat : <span style="float: right;">${{ $vat }} </span> </li>
@@ -155,19 +155,19 @@ $cart = Cart::Content();
             @else
       <li class="list-group-item">Total : <span style="float: right;">${{ Cart::Subtotal() + $charge + $vat }} </span> </li>
             @endif
-           
-          </ul> 
 
-           
+          </ul>
+
+
 
                     </div>
                 </div>
 
- 
- 
 
 
-<div class="col-lg-5" style="border: 1px solid grey; padding: 20px; border-radius: 25px;"> 
+
+
+<div class="col-lg-5" style="border: 1px solid grey; padding: 20px; border-radius: 25px;">
                     <div class="contact_form_container">
                         <div class="contact_form_title text-center">Shipping Address</div>
 
@@ -201,7 +201,7 @@ $cart = Cart::Content();
 
               <button class="btn btn-info">Pay Now</button>
             </form>
-         
+
 
                     </div>
                 </div>
@@ -219,7 +219,7 @@ $cart = Cart::Content();
 
 
 
-  
+
 
 
 
