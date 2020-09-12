@@ -65,7 +65,7 @@ class BrandController extends Controller
             'messege'=>'Brand Deleted Successfully',
             'alert-type'=>'success'
              );
-           return Redirect()->back()->with($notification); 
+           return Redirect()->back()->with($notification);
   }
 
 
@@ -79,7 +79,7 @@ class BrandController extends Controller
   public function UpdateBrand(Request $request, $id){
 
  $oldlogo = $request->old_logo;
-$data = array();
+    $data = array();
  	$data['brand_name'] = $request->brand_name;
  	$image = $request->file('brand_logo');
  	if ($image) {

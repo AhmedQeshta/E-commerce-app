@@ -179,7 +179,10 @@ Route::get('admin/delevery/done/{id}', 'Admin\OrderController@DeleveryDone');
 
 /// SEO Setting Route
 Route::get('admin/seo', 'Admin\OrderController@seo')->name('admin.seo');
+Route::get('admin/add/seo', 'Admin\OrderController@showAddSeo')->name('admin.add.seo');
+
 Route::post('admin/seo/update', 'Admin\OrderController@UpdateSeo')->name('update.seo');
+Route::post('admin/add/seo', 'Admin\OrderController@addSeo')->name('add.seo');
 
 // Order Tracking Route
 Route::post('order/traking', 'FrontController@OrderTraking')->name('order.tracking');
@@ -212,8 +215,19 @@ Route::post('admin/update/admin', 'Admin\UserRoleController@UserUpdate')->name('
 
 // Admin Site Setting Route
 Route::get('admin/site/setting', 'Admin\SettingController@SiteSetting')->name('admin.site.setting');
+Route::get('admin/add/site/setting', 'Admin\SettingController@ShowAddSiteSetting')->name('admin.add.site.setting');
 
 Route::post('admin/sitesetting', 'Admin\SettingController@UpdateSiteSetting')->name('update.sitesetting');
+Route::post('admin/add/site/setting', 'Admin\SettingController@addSiteSetting')->name('add.siteSetting');
+        #################### payment Settings ##############
+Route::get('admin/payment/setting/show', 'Admin\SettingController@indexPaymentSetting')->name('admin.payment.setting.show');
+Route::get('admin/payment/setting/add', 'Admin\SettingController@ShowAddpaymentSetting')->name('admin.payment.setting.add');
+
+Route::post('admin/payment/setting/add', 'Admin\SettingController@addpaymentSetting')->name('payment.Setting.add');
+Route::post('admin/payment/setting/update', 'Admin\SettingController@updatepaymentSetting')->name('payment.Setting.update');
+###########################################################################3
+Route::post('admin/sitesetting', 'Admin\SettingController@UpdateSiteSetting')->name('update.sitesetting');
+Route::post('admin/add/site/setting', 'Admin\SettingController@addSiteSetting')->name('add.siteSetting');
 
  // Return Order Route
 
