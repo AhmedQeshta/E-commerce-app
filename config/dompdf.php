@@ -132,6 +132,7 @@ return array(
          * the desired content might be different (e.g. screen or projection view of html file).
          * Therefore allow specification of content here.
          */
+
         "default_media_type" => "screen",
 
         /**
@@ -141,7 +142,7 @@ return array(
          *
          * @see CPDF_Adapter::PAPER_SIZES for valid sizes ('letter', 'legal', 'A4', etc.)
          */
-        "default_paper_size" => "A2",
+        "default_paper_size" => "A3",
 
         /**
          * The default font family

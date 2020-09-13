@@ -164,6 +164,7 @@ Route::get('allcategory/{id}', 'ProductController@CategoryView');
 Route::get('admin/pading/order', 'Admin\OrderController@NewOrder')->name('admin.neworder');
 Route::get('admin/view/order/{id}', 'Admin\OrderController@ViewOrder');
 Route::get('admin/view/order/print/{id}', 'Admin\OrderController@printViewOrder')->name('admin.printViewOrder');
+Route::get('/printPriView/{id}','Admin\OrderController@printPriView')->name('printPriView');
 
 Route::get('admin/payment/accept/{id}', 'Admin\OrderController@PaymentAccept');
 Route::get('admin/payment/cancel/{id}', 'Admin\OrderController@PaymentCancel');

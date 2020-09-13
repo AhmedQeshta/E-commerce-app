@@ -250,7 +250,7 @@ class Dompdf
         "courier", "courier-bold", "courier-oblique", "courier-boldoblique",
         "helvetica", "helvetica-bold", "helvetica-oblique", "helvetica-boldoblique",
         "times-roman", "times-bold", "times-italic", "times-bolditalic",
-        "symbol", "zapfdinbats"
+        "symbol", "zapfdinbats","sans-serif","dejavu sans"
     ];
 
     /**
@@ -262,7 +262,7 @@ class Dompdf
         "courier", "courier-bold", "courier-oblique", "courier-boldoblique",
         "helvetica", "helvetica-bold", "helvetica-oblique", "helvetica-boldoblique",
         "times-roman", "times-bold", "times-italic", "times-bolditalic",
-        "symbol", "zapfdinbats"
+        "symbol", "zapfdinbats","sans-serif","dejavu sans"
     ];
 
     /**
@@ -356,7 +356,7 @@ class Dompdf
             [$this->protocol, $this->baseHost, $this->basePath] = Helpers::explode_url($file);
         }
         $protocol = strtolower($this->protocol);
-        
+
         $uri = Helpers::build_url($this->protocol, $this->baseHost, $this->basePath, $file);
 
         if ( !in_array($protocol, $this->allowedProtocols) ) {

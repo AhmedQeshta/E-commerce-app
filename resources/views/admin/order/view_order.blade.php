@@ -8,7 +8,11 @@
       <div class="card pd-20 pd-sm-40">
           <div class="d-flex justify-content-sm-between py-2">
               <h6 class="card-body-title ">Order Details </h6>
-              <a href="{{route('admin.printViewOrder',$order->id)}}" class="btn btn-secondary" style="border-radius: 5px">Print</a>
+              <span>
+                  <a target="_blank" href="{{route('printPriView',$order->id)}}" class="btn btn-secondary btnprn" style="border-radius: 5px">Print <span><i class="fa fa-print"></i></span></a>
+                  <a href="{{route('admin.printViewOrder',$order->id)}}" class="btn btn-secondary" style="border-radius: 5px">Generate PDF <span><i class="fas fa-fill"></i></span></a>
+              </span>
+{{--              <a href="{{route('admin.printViewOrder',$order->id)}}" class="btn btn-secondary" style="border-radius: 5px">Print</a>--}}
           </div>
 
 
@@ -207,3 +211,5 @@
    </div>
 </div>
  @endsection
+
+

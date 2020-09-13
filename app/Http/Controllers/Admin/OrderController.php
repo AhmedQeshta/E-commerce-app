@@ -63,10 +63,29 @@ class OrderController extends Controller
             ->where('orders_details.order_id',$id)
             ->get();
 
-        $pdf = PDF::loadView('printViewOrder', compact('order','shipping','details'));
-        return $pdf->download('Orders_Details_to_'.$order->name.'_' . date('Y-m-d').'.pdf');
-//        return view('printViewOrder',compact('order','shipping','details'));
+        $pdf = PDF::loadView('admin.order.printViewOrder', compact('order','shipping','details'));
+        return $pdf->download('Orders_Details_to_'.$order->name.'_'. $order->status .'_'. $order->status_code .'_' . date('Y-m-d-m-s').'.pdf');
+//        return view('admin.order.printViewOrder',compact('order','shipping','details'));
 
+    }
+
+    public function printPriView($id){
+        $order = DB::table('orders')
+            ->join('users','orders.user_id','users.id')
+            ->select('orders.*','users.name','users.phone')
+            ->where('orders.id',$id)
+            ->first();
+        // dd($order);
+
+        $shipping = DB::table('shipping')->where('order_id',$id)->first();
+        // dd($shipping);
+
+        $details = DB::table('orders_details')
+            ->join('products','orders_details.product_id','products.id')
+            ->select('orders_details.*','products.product_code','products.image_one')
+            ->where('orders_details.order_id',$id)
+            ->get();
+        return view('admin.order.printViewOrder',compact('order','shipping','details'));
     }
 
 
