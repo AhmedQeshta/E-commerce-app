@@ -9,10 +9,10 @@ class ContactController extends Controller
 {
 
 
-  public function __construct()
-    {
-//        $this->middleware('auth:admin');
-    }
+//  public function __construct()
+//    {
+////        $this->middleware('auth:admin');
+//    }
 
 
 
@@ -28,6 +28,7 @@ class ContactController extends Controller
   	$data['email'] = $request->email;
   	$data['phone'] = $request->phone;
   	$data['message'] = $request->message;
+  	$data['status'] = 0;
   	DB::table('contact')->insert($data);
   	$notification=array(
             'messege'=>'Your Message Insert Successfully',
@@ -42,6 +43,31 @@ class ContactController extends Controller
      return view('admin.contact.all_message',compact('message'));
  }
 
+ public function ShowMessage($id){
+     $message =	DB::table('contact')->where('id',$id)->get();
+     return view('admin.contact.Show_message',compact('message'));
+ }
+
+    public function ReadMessage($id){
+
+        $data = array();
+        $data['status'] = 1;
+        $message = DB::table('contact')->where('id',$id)->update($data);
+        $notification=array(
+            'messege'=>'Your Read this Message Successfully',
+            'alert-type'=>'success'
+        );
+        return Redirect()->route('all.message')->with($notification);
+    }
+    public function DeleteMessage($id){
+
+        DB::table('contact')->where('id',$id)->delete();
+        $notification=array(
+            'messege'=>'This Message Deleted Successfully',
+            'alert-type'=>'success'
+        );
+        return Redirect()->route('all.message')->with($notification);
+    }
 
 
 }

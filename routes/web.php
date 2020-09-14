@@ -250,7 +250,10 @@ Route::get('admin/product/stock', 'Admin\UserRoleController@ProductStock')->name
 Route::get('contact/page', 'ContactController@Contact')->name('contact.page');
 Route::post('contact/form', 'ContactController@ContactForm')->name('contact.form');
 
-Route::get('admin/all/message', 'ContactController@AllMessage')->name('all.message');
+Route::get('admin/all/message', 'ContactController@AllMessage')->name('all.message')->middleware('auth:admin');
+Route::get('admin/all/message/show/{id}', 'ContactController@ShowMessage')->name('all.message.show')->middleware('auth:admin');
+Route::get('admin/all/message/read/{id}', 'ContactController@ReadMessage')->name('all.message.read')->middleware('auth:admin');
+Route::get('admin/all/message/delete/{id}', 'ContactController@DeleteMessage')->name('message.delete')->middleware('auth:admin');
 
 // Search Route
 Route::post('product/search', 'CartController@Search')->name('product.search');

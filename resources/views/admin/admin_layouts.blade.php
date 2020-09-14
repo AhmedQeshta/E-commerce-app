@@ -296,37 +296,43 @@
      @endif
 
 @if(Auth::user()->contact == 1)
-         <a href="#" class="sl-menu-link {{ Request::is('admin/all/message') ? 'active' : '' }}">
+      @php
+          $contact = DB::table('contact')->where('status',0)->get();
+      @endphp
+         <a href="#" class="sl-menu-link {{ Request::is('admin/all/message','admin/all/message/*','admin/all/message/show/*') ? 'active' : '' }}">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
             <span class="menu-item-label">Contact Message</span>
+              @if($contact->count()>0)
+                  <i style="color:#e24949; margin: 0px 10px" class="rote-lr menu-item-arrow fa fa-bell "></i>
+              @endif
             <i class="menu-item-arrow fa fa-angle-down"></i>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/all/message') ? 'open' : '' }}">
+        <ul class="sl-menu-sub nav flex-column {{ Request::is('admin/all/message','admin/all/message/*','admin/all/message/show/*') ? 'open' : '' }}">
 
-           <li class="nav-item {{ Request::is('admin/all/message') ? 'hover' : '' }}"><a href="{{ route('all.message') }}" class="nav-link">All Message </a></li>
+           <li class="nav-item li-relative-ul {{ Request::is('admin/all/message') ? 'hover' : '' }}"><a href="{{ route('all.message') }}" class="nav-link">All Message @if($contact->count()>0) <span class="badge badge-danger notifiction-li-order">{{$contact->count()}}</span> @endif   </a></li>
 
         </ul>
 
      @else
      @endif
 
-@if(Auth::user()->comment == 1)
-    <a href="#" class="sl-menu-link">
-          <div class="sl-menu-item">
-            <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>
-            <span class="menu-item-label">Product Comments </span>
-            <i class="menu-item-arrow fa fa-angle-down"></i>
-          </div><!-- menu-item -->
-        </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="#" class="nav-link">New Comments</a></li>
-           <li class="nav-item"><a href="#" class="nav-link">All Comments </a></li>
+{{--@if(Auth::user()->comment == 1)--}}
+{{--    <a href="#" class="sl-menu-link">--}}
+{{--          <div class="sl-menu-item">--}}
+{{--            <i class="menu-item-icon icon ion-ios-filing-outline tx-24"></i>--}}
+{{--            <span class="menu-item-label">Product Comments </span>--}}
+{{--            <i class="menu-item-arrow fa fa-angle-down"></i>--}}
+{{--          </div><!-- menu-item -->--}}
+{{--        </a><!-- sl-menu-link -->--}}
+{{--        <ul class="sl-menu-sub nav flex-column">--}}
+{{--          <li class="nav-item"><a href="#" class="nav-link">New Comments</a></li>--}}
+{{--           <li class="nav-item"><a href="#" class="nav-link">All Comments </a></li>--}}
 
-        </ul>
-     @else
-     @endif
+{{--        </ul>--}}
+{{--     @else--}}
+{{--     @endif--}}
 
 @if(Auth::user()->setting == 1)
               @php
