@@ -13,49 +13,60 @@
 				<div class="col-lg-12">
 					<div class="cart_container">
 						<div class="cart_title">Your Wishlist Product</div>
-						<div class="cart_items">
-							<ul class="cart_list">
-                                @foreach($product as $row)
+                        @php
+                            $userid = Auth::id();
+                            $check = DB::table('wishlists')->where('user_id',$userid)->first();
+                        @endphp
+                        @if($check)
+                            <div class="cart_items">
+                                <ul class="cart_list">
+                                        <a id="deleted" style="position: relative"  href="{{route('Remove.WishList')}}"><i style="position: absolute; top: -35px ;left: 1030px ;padding: 10px 12px; " class="btn btn-sm btn-danger fa fa-trash"> Remove All</i></a>
+                                        @foreach($product as $row)
+                                            <li class="cart_item clearfix">
+                                                <div class="cart_item_image text-center"><br><img src="{{ asset($row->image_one) }} " style="width: 70px; width: 70px;" alt=""></div>
+                                                <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                                    <div class="cart_item_name cart_info_col">
+                                                        <div class="cart_item_title">Name</div>
+                                                        <div class="cart_item_text">{{ $row->product_name  }}</div>
+                                                    </div>
 
-                                    <li class="cart_item clearfix">
-                                        <div class="cart_item_image text-center"><br><img src="{{ asset($row->image_one) }} " style="width: 70px; width: 70px;" alt=""></div>
-                                        <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                                            <div class="cart_item_name cart_info_col">
-                                                <div class="cart_item_title">Name</div>
-                                                <div class="cart_item_text">{{ $row->product_name  }}</div>
-                                            </div>
+                                                    @if($row->product_color == NULL)
 
-                                            @if($row->product_color == NULL)
-
-                                            @else
-                                            <div class="cart_item_color cart_info_col">
-                                                <div class="cart_item_title">Color</div>
-                                                <div class="cart_item_text"> {{ $row->product_color }}</div>
-                                            </div>
-                                             @endif
+                                                    @else
+                                                        <div class="cart_item_color cart_info_col">
+                                                            <div class="cart_item_title">Color</div>
+                                                            <div class="cart_item_text"> {{ $row->product_color }}</div>
+                                                        </div>
+                                                    @endif
 
 
-                                            @if($row->product_size == NULL)
+                                                    @if($row->product_size == NULL)
 
-                                            @else
-                                            <div class="cart_item_color cart_info_col">
-                                                <div class="cart_item_title">Size</div>
-                                                <div class="cart_item_text"> {{ $row->product_size }}</div>
-                                            </div>
-                                            @endif
+                                                    @else
+                                                        <div class="cart_item_color cart_info_col">
+                                                            <div class="cart_item_title">Size</div>
+                                                            <div class="cart_item_text"> {{ $row->product_size }}</div>
+                                                        </div>
+                                                    @endif
 
-                                            <div class="cart_item_color cart_info_col">
-                                                <div class="cart_item_title">Action</div><br>
-                                                <button id="{{ $row->id }}" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#cartmodal" onclick="productview(this.id)">
+                                                    <div class="cart_item_color cart_info_col">
+                                                        <div class="cart_item_title">Action</div><br>
+                                                        <button id="{{ $row->id }}" class="btn btn-sm btn-dark" data-toggle="modal" data-target="#cartmodal" onclick="productview(this.id)">
                                                             Add to Cart
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </li>
-                                @endforeach
-							</ul>
-						</div>
+                                                        </button>
 
+
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endforeach
+
+
+
+                                </ul>
+                            </div>
+                        @else
+                        @endif
 
 
 
@@ -195,4 +206,28 @@
 </script>
 
 <script src="{{ asset('public/frontend/js/cart_custom.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
+
+<script>
+    $(document).on("click", "#deleted", function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+        swal({
+            title: "Are you Want to Return?",
+            text: "Once Teturn, this will return your money!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = link;
+                } else {
+                    swal("Cancel!");
+                }
+            });
+    });
+</script>
+
 @endsection

@@ -56,7 +56,7 @@ return [
 
     'format' => [
 
-        'decimals' => 2,
+        'decimals' => 3,
 
         'decimal_point' => '.',
 

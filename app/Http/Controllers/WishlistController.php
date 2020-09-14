@@ -20,22 +20,36 @@ class WishlistController extends Controller
     );
 
 			  if (Auth::Check()) {
-             
+
              if ($check) {
-              return \Response::json(['error' => 'Product Already Has on your wishlist']);	 
+              return \Response::json(['error' => 'Product Already Has on your wishlist']);
              }else{
              	DB::table('wishlists')->insert($data);
           return \Response::json(['success' => 'Product Added on wishlist']);
- 
-             }
-             
-			  	 
-			  }else{
-          return \Response::json(['error' => 'At first loing your account']);      
 
-			  } 
+             }
+
+
+			  }else{
+          return \Response::json(['error' => 'At first loing your account']);
+
+			  }
 
    }
+
+    public function RemoveWishlist(){
+
+            DB::table('wishlists')->delete();
+
+            $notification=array(
+                'messege'=>'Remove Product From WithList Successfully',
+                'alert-type'=>'success'
+            );
+            return Redirect()->route('user.wishlist')->with($notification);
+
+
+    }
+
 
 
 

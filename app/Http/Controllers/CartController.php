@@ -183,9 +183,7 @@ class CartController extends Controller
            ->select('products.*','wishlists.user_id')
            ->where('wishlists.user_id',$userid)
            ->get();
-          // return response()->json($product);
            return view('pages.wishlist',compact('product'));
-
    }
 
 

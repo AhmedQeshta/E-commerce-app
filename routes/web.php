@@ -116,6 +116,7 @@ Route::post('store/newslater', 'FrontController@StoreNewslater')->name('store.ne
 // ADD Wishlist
 
 Route::get('add/wishlist/{id}', 'WishlistController@addWishlist');
+Route::get('remove/wishlist', 'WishlistController@RemoveWishlist')->name('Remove.WishList');
 
 // Add to Cart Route
 Route::get('add/to/cart/{id}', 'CartController@AddCart');

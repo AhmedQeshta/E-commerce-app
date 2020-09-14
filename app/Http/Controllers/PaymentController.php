@@ -43,8 +43,19 @@ class PaymentController extends Controller
 
   public function StripeCharge(Request $request){
 
-         $email = Auth::user()->email;
+        $email = Auth::user()->email;
+
+       if (Session::has('coupon')) {
+           $shopCh = $request->shipping;
+           $vat = $request->vat;
+           $sub = Session::get('coupon')['balance'];
+           $total = round($shopCh,2) + round($vat,2) + round($sub,2) ;
+//           $total = 249.995 + 100 + 5 ;
+//           $total = $request->total;
+       }else{
           $total = $request->total;
+      }
+
 		// Set your secret key: remember to change this to your live secret key in production
 		// See your keys here: https://dashboard.stripe.com/account/apikeys
 		\Stripe\Stripe::setApiKey('sk_test_5ZirZT3iIt0WKpWjL9HAjzFr00FH2pBhQp');
@@ -69,14 +80,18 @@ class PaymentController extends Controller
     $data['stripe_order_id'] = $charge->metadata->order_id;
     $data['shipping'] = $request->shipping;
     $data['vat'] = $request->vat;
-    $data['total'] = $request->total;
+
     $data['payment_type'] = $request->payment_type;
     $data['status_code'] = mt_rand(100000,999999);
 
     if (Session::has('coupon')) {
-    	$data['subtotal'] = Session::get('coupon')['balance'];
+        $shopCh = $request->shipping;
+        $vat = $request->vat;
+        $sub = $data['subtotal'] = Session::get('coupon')['balance'];
+        $data['total'] =  $sub + $vat + $shopCh;
     }else{
     	$data['subtotal'] = Cart::Subtotal();
+        $data['total'] = $request->total;
     }
     $data['status'] = 0;
     $data['date'] = date('d-m-y');
@@ -140,14 +155,18 @@ public function OnCash(Request $request){
     $data['user_id'] = Auth::id();
     $data['shipping'] = $request->shipping;
     $data['vat'] = $request->vat;
-    $data['total'] = $request->total;
+
     $data['payment_type'] = $request->payment_type;
     $data['status_code'] = mt_rand(100000,999999);
 
     if (Session::has('coupon')) {
-      $data['subtotal'] = Session::get('coupon')['balance'];
+        $shopCh = $request->shipping;
+        $vat = $request->vat;
+        $sub = $data['subtotal'] = Session::get('coupon')['balance'];
+        $data['total'] = $sub + $vat + $shopCh;
     }else{
       $data['subtotal'] = Cart::Subtotal();
+        $data['total'] = $request->total;
     }
     $data['status'] = 0;
     $data['date'] = date('d-m-y');
