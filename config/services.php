@@ -31,8 +31,8 @@ return [
     ],
 
     'google' => [
-    'client_id' => '578845897426-tit65unv1agqp663viutabqa6q1oltk2.apps.googleusercontent.com',
-    'client_secret' => 'Q-97bU7pogS_EOsUo_jmGfG-',
+    'client_id' => '262053184312-7iobn0qq1lf4du1o1no2ee4183eg70rl.apps.googleusercontent.com',
+    'client_secret' => 'ct_sS8dNWH09MesUvQwlQV-U',
     'redirect' => 'http://ecommerce-app.net/callback/google',
   ],
 
