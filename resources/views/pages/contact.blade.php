@@ -3,10 +3,10 @@
 @section('content')
 @include('layouts.menubar')
 
-@php 
+@php
  $site = DB::table('sitesetting')->first();
 
-@endphp 
+@endphp
 
 <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/contact_styles.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/styles/contact_responsive.css') }}">
@@ -21,7 +21,7 @@
 
 						<!-- Contact Item -->
 						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
-							<div class="contact_info_image"><img src="images/contact_1.png" alt=""></div>
+							<div class="contact_info_image"><img src="{{asset('public/frontend/images/contact_1.png')}}" alt="logo contact phone"></div>
 							<div class="contact_info_content">
 								<div class="contact_info_title">Phone</div>
 								<div class="contact_info_text">{{ $site->phone_one }}</div>
@@ -30,7 +30,7 @@
 
 						<!-- Contact Item -->
 						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
-							<div class="contact_info_image"><img src="images/contact_2.png" alt=""></div>
+							<div class="contact_info_image"><img src="{{asset('public/frontend/images/contact_2.png')}}" alt="logo contact email"></div>
 							<div class="contact_info_content">
 								<div class="contact_info_title">Email</div>
 								<div class="contact_info_text">{{ $site->email }}</div>
@@ -39,7 +39,7 @@
 
 						<!-- Contact Item -->
 						<div class="contact_info_item d-flex flex-row align-items-center justify-content-start">
-							<div class="contact_info_image"><img src="images/contact_3.png" alt=""></div>
+							<div class="contact_info_image"><img src="{{asset('public/frontend/images/contact_3.png')}}" alt="logo contact address"></div>
 							<div class="contact_info_content">
 								<div class="contact_info_title">Address</div>
 								<div class="contact_info_text">{{ $site->company_address }}</div>
@@ -61,20 +61,31 @@
 					<div class="contact_form_container">
 						<div class="contact_form_title">Get in Touch</div>
 
-		 <form method="post" action="{{ route('contact.form') }}" id="contact_form">
-		 	@csrf
+                     <form method="post" action="{{ route('contact.form') }}" id="contact_form">
+                            @csrf
 							<div class="contact_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between">
 
-<input type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="Your name" required="required" data-error="Name is required." name="name">
+                                @if(Auth::check())
+                                    <input type="text" value="{{Auth::user()->name}}" id="contact_form_name" class="contact_form_name input_field" placeholder="Your name" required="required" data-error="Name is required." name="name">
+                                @else
+                                    <input type="text"  id="contact_form_name" class="contact_form_name input_field" placeholder="Your name" required="required" data-error="Name is required." name="name">
+                                @endif
 
-<input type="email" id="contact_form_email" class="contact_form_email input_field" placeholder="Your email" required="required" data-error="Email is required." name="email">
+                                @if(Auth::check())
+                                    <input type="email" value="{{Auth::user()->email}}" id="contact_form_email" class="contact_form_email input_field" placeholder="Your email" required="required" data-error="Email is required." name="email">
+                                @else
+                                    <input type="email" id="contact_form_email" class="contact_form_email input_field" placeholder="Your email" required="required" data-error="Email is required." name="email">
+                                @endif
 
-<input type="text" id="contact_form_phone" class="contact_form_phone input_field" placeholder="Your phone number" name="phone">
-
-</div>
-<div class="contact_form_text">
-<textarea id="contact_form_message" class="text_field contact_form_message" name="message" rows="4" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
-</div> 
+                                @if(Auth::check())
+                                    <input type="text" value="{{Auth::user()->phone}}" id="contact_form_phone" class="contact_form_phone input_field" placeholder="Your phone number" name="phone">
+                                @else
+                                    <input type="text"  id="contact_form_phone" class="contact_form_phone input_field" placeholder="Your phone number" name="phone">
+                                @endif
+                            </div>
+                            <div class="contact_form_text">
+                            <textarea id="contact_form_message" class="text_field contact_form_message" name="message" rows="4" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
+                            </div>
 							<div class="contact_form_button">
 								<button type="submit" class="button contact_submit_button">Send Message</button>
 							</div>

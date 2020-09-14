@@ -32,90 +32,75 @@
 						<div class="product_category">{{ $product->category_name }} > {{ $product->subcategory_name }}</div>
 						<div class="product_name">{{ $product->product_name }}</div>
 						<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
-						<div class="product_text"><p> 
-                      {!!  str_limit($product->product_details, $limit = 600 )  !!}
-						</p></div>
+						<div class="product_text">
+                            <p>
+                                {!!  str_limit($product->product_details, $limit = 600 )  !!}
+						    </p>
+                        </div>
 						<div class="order_info d-flex flex-row">
+		                        <form action="{{ url('cart/product/add/'.$product->id) }}" method="post">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Color</label>
+                                                <select class="form-control input-lg" id="exampleFormControlSelect1" name="color"> @foreach($product_color as $color)
+                                                    <option value="{{ $color }}">{{ $color }}</option>
 
-		 <form action="{{ url('cart/product/add/'.$product->id) }}" method="post">
-		 	@csrf
-				
-          <div class="row">
-          	<div class="col-lg-4">
-          	<div class="form-group">
-          		<label for="exampleFormControlSelect1">Color</label>
-          		<select class="form-control input-lg" id="exampleFormControlSelect1" name="color"> @foreach($product_color as $color)
-          			<option value="{{ $color }}">{{ $color }}</option>
-          			
-                 @endforeach
-          		</select>          		
-          	</div> 
-          	</div> 
+                                                 @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
 
 
-@if($product->product_size == NULL)
+                                        @if($product->product_size == NULL)
+                                        @else
+                                            <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlSelect1">Size</label>
+                                                        <select class="form-control input-lg" id="exampleFormControlSelect1" name="size">
+                                                             @foreach($product_size as $size)
+                                                            <option value="{{ $size }}">{{ $size }}</option>
+                                                             @endforeach
 
-@else
-<div class="col-lg-4">
-          	<div class="form-group">
-          		<label for="exampleFormControlSelect1">Size</label>
-          		<select class="form-control input-lg" id="exampleFormControlSelect1" name="size"> 
-          			 @foreach($product_size as $size)
-          			<option value="{{ $size }}">{{ $size }}</option>
-          	 
-          			 @endforeach
-
-          		</select>          		
-          	</div> 
-          	</div> 
-
-          	@endif       
-
-
-          	<div class="col-lg-4">
-          	<div class="form-group">
-          		<label for="exampleFormControlSelect1">Quantity</label>
-          		 <input class="form-control" type="number" value="1" pattern="[0-9]" name="qty">	
-          	</div> 
-          	</div>    
-
- 
-
-          </div> 
-									 
-								</div>
-
-								 
- @if($product->discount_price == NULL)
-<div class="product_price">${{ $product->selling_price }}<span> </div>
-      @else
-<div class="product_price">${{ $product->discount_price }}<span>${{ $product->selling_price }}</span></div>
-      @endif
+                                                        </select>
+                                                    </div>
+                                            </div>
+                                        @endif
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Quantity</label>
+                                                 <input class="form-control" type="number" value="1" pattern="[0-9]" name="qty">
+                                            </div>
+                                        </div>
+                                    </div>
 
 
-								<div class="button_container">
-									<button type="submit" class="button cart_button">Add to Cart</button>
-									<div class="product_fav"><i class="fas fa-heart"></i></div>
-								</div>
+                                     @if($product->discount_price == NULL)
+                                            <div class="product_price">${{ $product->selling_price }}</div>
+                                    @else
+                                            <div class="product_price">${{ $product->discount_price }}<span>${{ $product->selling_price }}</span></div>
+                                    @endif
 
-<br><br>
 
+                                    <div class="button_container">
+                                        <button type="submit" class="button cart_button">Add to Cart</button>
+                                        <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                    </div>
 
-                <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                <div class="addthis_inline_share_toolbox"></div>
-            				
-								
-							</form>
-						</div>
-					</div>
-				</div>
+                                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                                    <div class="addthis_inline_share_toolbox py-2"></div>
 
-			</div>
-		</div>
-	</div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 	<!-- Recently Viewed -->
-
 	<div class="viewed">
 		<div class="container">
 			<div class="row">
@@ -152,19 +137,23 @@
   </div>
 </div>
 
-					 
+
 				</div>
 			</div>
 		</div>
 	</div>
 
 
+{{--<div id="fb-root"></div>--}}
+{{--<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v8.0&appId=640263150245647&autoLogAppEvents=1" nonce="UPQ2MsI4"></script>--}}
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f5e5944cc68c1c5"></script>
 
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0&appId=640263150245647&autoLogAppEvents=1" nonce="UPQ2MsI4"></script>
 
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e4b85f98de5201f"></script>
+
+
 
 
 @endsection
